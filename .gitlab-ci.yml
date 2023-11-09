@@ -41,6 +41,6 @@ build docker image:
   script:
     - echo $PAT | docker login ghcr.io -u $REGISTRY_USER --password-stdin
     - docker build -t $REGISTRY_IMAGE
-    - docker push $REGISTRY_IMAGE
+    - docker push $REGISTRY_URL
 
 
