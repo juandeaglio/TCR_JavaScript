@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "@powershell ./test_or_revert.ps1",
+    "test_and_commit": "@powershell ./test_or_revert.ps1",
+    "test": "jest",
     "start": "webpack serve --open"
   },
   "keywords": [],
