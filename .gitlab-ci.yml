@@ -23,6 +23,6 @@ cache:
 
 test_react:
   script:
-      - npx jest
+      - npm test
 
 
