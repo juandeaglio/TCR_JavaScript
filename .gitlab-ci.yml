@@ -13,7 +13,9 @@ stages:
   - test
   - dockerimage
 
-
+cache:
+  paths:
+    - node_modules/
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
@@ -30,5 +32,15 @@ unit tests:
   script:
     - npm test
 
+
+build docker image:
+  stage: dockerimage
+  image: docker
+  services:
+    - docker:dind
+  script:
+    - echo $PAT | docker login ghcr.io -u $REGISTRY_USER --password-stdin
+    - docker build -t $REGISTRY_IMAGE
+    - docker push $REGISTRY_IMAGE
 
 
