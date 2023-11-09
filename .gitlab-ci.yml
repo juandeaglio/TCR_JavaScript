@@ -11,6 +11,7 @@
 # https://hub.docker.com/r/library/node/tags/
 stages:
   - test
+  - dockerimage
 
 
 
@@ -21,9 +22,13 @@ stages:
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
 
-test:
-  image: ghcr.io/juandeaglio/tcrjavascript:latest
+unit tests:
+  stage: test
+  image: node:18-alpine
+  before_script:
+    - npm install
   script:
-      - npm test
+    - npm test
+
 
 
