@@ -5,4 +5,4 @@ RUN npm install
 COPY src ./src
 COPY test ./test
 
-CMD ["npx", "jest"]
+CMD ["npm", "test"]
