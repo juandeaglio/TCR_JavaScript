@@ -23,6 +23,6 @@ cache:
 
 test_react:
   script:
-      - echo ""
+      - npx jest
 
 
