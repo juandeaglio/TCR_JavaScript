@@ -40,7 +40,7 @@ build docker image:
     - docker:dind
   script:
     - echo $PAT | docker login ghcr.io -u $REGISTRY_USER --password-stdin
-    - docker build -t $REGISTRY_IMAGE
+    - docker image build -t tcrjavascript:latest .
     - docker push $REGISTRY_URL
 
 
