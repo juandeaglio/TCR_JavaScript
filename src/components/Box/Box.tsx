@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Box: React.FC<{'data-testid'?: string}> = (props) => {
+const generateId = () => `box-${Date.now()}-${Math.random()}`;
+
+const Box: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
+  const [testId] = useState(generateId());
   return(
-    <div data-testid={props['data-testid']}>
-      I am not a box.
+    <div className='box' {...props} data-testid={testId} role='box'>
+      I am a box.
     </div>
   );
 };

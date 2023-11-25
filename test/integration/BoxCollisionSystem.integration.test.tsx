@@ -10,12 +10,14 @@ const TestApp = () => {
         <div>
         <p>Test environment for Box component</p>
         {/* Render Box component with necessary props or context */}
-        <Box data-testid="box-1"/>
+        <Box/>
         </div>
     );
 };
 
-test('A box collides with edge of the screen.', () => {
-    render(<TestApp />);
-    const boxElement = screen.getByTestId('box-1');
+test('A box exists', () => {
+    const container = render(<TestApp />);
+    const boxElement = container.getByRole('box');
+    // gets react component name from box
+    expect(boxElement).toBeDefined();
 });
