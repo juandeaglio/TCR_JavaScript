@@ -17,7 +17,7 @@ const TestApp = () => {
 
 test('A box exists', () => {
     const container = render(<TestApp />);
-    const boxElement = container.getByRole('box');
-    // gets react component name from box
-    expect(boxElement).toBeDefined();
+    expect(container.getByRole('box')).toBeInTheDocument();
 });
+
+export default TestApp;
