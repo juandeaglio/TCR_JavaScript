@@ -9,4 +9,10 @@ test('Create box', () => {
   const wrapper = shallow(<Box />);
   const box = wrapper.find('[role="box"]');
   expect(box.exists()).toBe(true);
+
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  expect(box.prop('x')).toEqual(centerX);
+  expect(box.prop('y')).toEqual(centerY);
 });

@@ -16,10 +16,16 @@ const TestApp = () => {
     );
 };
 
-test('A box exists', () => {
+test('A box exists in the center of the screen', () => {
     render(<TestApp />);
     const box = screen.getByRole('box');
     expect(box).toBeInTheDocument();
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    expect(box).toHaveAttribute('x', centerX.toString());
+    expect(box).toHaveAttribute('y', centerY.toString());
 });
 
 export default TestApp;
