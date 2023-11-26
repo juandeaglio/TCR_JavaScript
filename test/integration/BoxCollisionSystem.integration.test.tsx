@@ -11,7 +11,7 @@ const TestApp = () => {
 
     return (
         <svg width={screenWidth} height={screenHeight}>
-            <Box />
+            <Box windowWidth={screenWidth} widthHeight={screenHeight} />
         </svg>
     );
 };

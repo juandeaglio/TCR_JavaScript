@@ -5,8 +5,8 @@ import Box from '../../src/components/Box/Box';
 import React from 'react';
 
 configure({ adapter: new Adapter() });
-test('Create box', () => {
-  const wrapper = shallow(<Box />);
+test('Create box in the center of screen', () => {
+  const wrapper = shallow(<Box windowWidth={window.innerWidth} widthHeight={window.innerHeight} />);
   const box = wrapper.find('[role="box"]');
   expect(box.exists()).toBe(true);
 
