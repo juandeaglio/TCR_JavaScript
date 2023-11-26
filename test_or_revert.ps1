@@ -17,6 +17,6 @@ if ($LASTEXITCODE -ne 0) {
   }
   else {
      # Commit changes with message
-     git add -A; git commit -m $commitMessage
+    git add -A; git commit -m $commitMessage
   }
 }

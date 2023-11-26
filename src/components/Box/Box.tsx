@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-const Box: React.FC<React.HTMLProps<HTMLDivElement>> = (props) => {
+const Box: React.FC<React.HTMLProps<HTMLDivElement>> = () => {
   return(
-    <div role='box'>
-      I am a box.
-    </div>
+    <g role='box'>
+      <rect x={0} y={0} width={100} height={100} fill='red' />
+    </g>
   );
 };
 
