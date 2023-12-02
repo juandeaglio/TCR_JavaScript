@@ -15,4 +15,6 @@ test('Create box in the center of screen', () => {
 
   expect(box.prop('x')).toEqual(centerX);
   expect(box.prop('y')).toEqual(centerY);
+  //check for attribute data-collision-count
+  expect(box.prop('data-collision-count')).toEqual(0);
 });

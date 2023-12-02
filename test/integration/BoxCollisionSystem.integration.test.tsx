@@ -70,7 +70,7 @@ test('A box that does not move and doesnt collide', () => {
     const box = screen.getByRole('box');
     setTimeout(() => {}, 1000);
     const collisionCount = box.getAttribute('data-collision-count');
-
+    expect(collisionCount).toBe('0');
 });
 
 export default TestApp;
