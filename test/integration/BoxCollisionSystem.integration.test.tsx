@@ -24,18 +24,20 @@ function normalizeDirection(direction: number): number {
 
 type TestAppProps = {
     direction: number,
-    collisionSystem?: React.FC
+    collisionSystem?: React.FC,
+    screenWidth?: number,
+    screenHeight?: number
 }
 
-const TestApp: React.FC<TestAppProps> = ({ direction, collisionSystem }) => {
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
+const TestApp: React.FC<TestAppProps> = ({ direction, collisionSystem, screenWidth, screenHeight }) => {
+    const width = screenWidth || max_width;
+    const height = screenHeight || max_height;
 
 
     // Assuming Box expects an object with windowWidth and widthHeight
     const boxProps = {
-        windowWidth: screenWidth,
-        windowHeight: screenHeight,
+        windowWidth: width,
+        windowHeight: height,
     };
 
     return (
@@ -55,8 +57,8 @@ test('A box exists in the center of the screen', () => {
     const box = screen.getByRole('box');
     expect(box).toBeInTheDocument();
 
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const centerX = max_width / 2;
+    const centerY = max_height / 2;
 
     expect(box).toHaveAttribute('x', centerX.toString());
     expect(box).toHaveAttribute('y', centerY.toString());
