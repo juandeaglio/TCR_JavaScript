@@ -69,6 +69,8 @@ test('A box that does not move and doesnt collide', () => {
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
     setTimeout(() => {}, 1000);
+    const collisionCount = box.getAttribute('data-collision-count');
+
 });
 
 export default TestApp;
