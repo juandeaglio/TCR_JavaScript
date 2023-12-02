@@ -10,20 +10,19 @@ const max_width = 1024;
 const max_height = 1024;
 
 enum Direction {
-    None = 0,
-    Up = 1,
-    Right = 2,
-    Down = 3,
-    Left = 4
+    Up = 0,
+    Right = 90,
+    Down = 180,
+    Left = 270
 }
 
 function normalizeDirection(direction: number): number {
-    direction = direction % 5;
+    direction = direction % 360;
     return Direction[Direction[direction] as keyof typeof Direction];
 }
 
 type TestAppProps = {
-    direction: number,
+    direction?: number,
     collisionSystem?: React.FC,
     screenWidth?: number,
     screenHeight?: number
@@ -65,12 +64,18 @@ test('A box exists in the center of the screen', () => {
 });
 
 test('A box that does not move and doesnt collide', () => {
-    // dependency injection of a box into TestApp, one with a move right velocity that reaches the right edge of the screen in 1 second
-    render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
+    render(<TestApp collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
     setTimeout(() => {}, 1000);
     const collisionCount = box.getAttribute('data-collision-count');
     expect(collisionCount).toBe('0');
+});
+
+test('A box that moves right and collides once, and then stops', () => {
+    render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
+    const box = screen.getByRole('box');
+    setTimeout(() => {}, 1000);
+    const collisionCount = box.getAttribute('data-collision-count');
 });
 
 export default TestApp;
