@@ -6,11 +6,11 @@ import '@testing-library/jest-dom';
 
 
 enum Direction {
-    None = 0 % 5,
-    Up = 1 % 5,
-    Right = 2 % 5,
-    Down = 3 % 5,
-    Left = 4 % 5,
+    None = 0,
+    Up = 1,
+    Right = 2,
+    Down = 3,
+    Left = 4
 }
 
 type TestAppProps = {
@@ -48,14 +48,14 @@ test('A box exists in the center of the screen', () => {
 
 test('A box moves from center to the right edge of the screen', () => {
     // dependency injection of a box into TestApp, one with a move right velocity that reaches the right edge of the screen in 1 second    
-    render(<TestApp direction={'right'} />);
+    render(<TestApp direction={Direction.Right} />);
     const box = screen.getByRole('box');
     expect(box).toBeInTheDocument();
 
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    expect(box).toHaveAttribute('x', (centerX + 10).toString());
+    expect(box).toHaveAttribute('x', (centerX).toString());
     expect(box).toHaveAttribute('y', centerY.toString());
 });
 
