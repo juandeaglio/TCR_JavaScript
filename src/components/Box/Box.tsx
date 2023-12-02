@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-const Box: React.FC<{ windowWidth: number, widthHeight: number }> = (props) => {
+const Box: React.FC<{ windowWidth: number, windowHeight: number }> = (props) => {
   const centerX = props.windowWidth / 2;
-  const centerY = props.widthHeight / 2;
+  const centerY = props.windowHeight / 2;
 
   return(
     <g role='box' x={centerX} y={centerY}>

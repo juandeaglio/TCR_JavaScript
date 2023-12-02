@@ -32,7 +32,7 @@ const TestApp: React.FC<TestAppProps> = ({ direction, collisionSystem }) => {
     // Assuming Box expects an object with windowWidth and widthHeight
     const boxProps = {
         windowWidth: screenWidth,
-        widthHeight: screenHeight,
+        windowHeight: screenHeight,
     };
 
     return (
