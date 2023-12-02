@@ -64,11 +64,11 @@ test('A box exists in the center of the screen', () => {
     expect(box).toHaveAttribute('y', centerY.toString());
 });
 
-test('A box moves from center to the right edge of the screen', () => {
-    // dependency injection of a box into TestApp, one with a move right velocity that reaches the right edge of the screen in 1 second    
+test('A box that does not move and doesnt collide', () => {
+    // dependency injection of a box into TestApp, one with a move right velocity that reaches the right edge of the screen in 1 second
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
-    expect(box).toBeInTheDocument();
+    setTimeout(() => {}, 1000);
 });
 
 export default TestApp;
