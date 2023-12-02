@@ -6,6 +6,9 @@ import { number } from 'prop-types';
 import CollisionSystem from '../../src/components/CollisionSystem/CollisionSystem';
 
 
+const max_width = 1024;
+const max_height = 1024;
+
 enum Direction {
     None = 0,
     Up = 1,
