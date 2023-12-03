@@ -1,21 +1,26 @@
-import { configure } from 'enzyme';
-import Adapter from '@cfaester/enzyme-adapter-react-18';
-import { shallow } from 'enzyme';
-import Box from '../Box/Box';
 import React from 'react';
 import HTMLPhysics from './HTMLPhysics';
 import Direction from '../../Direction';
 
-configure({ adapter: new Adapter() });
-test('Move a box to the right', () => {
-    const physics = new HTMLPhysics();
-    const createdStyle = physics.createMove(Direction.Right, 10)
-    const actualStyle: React.CSSProperties = {
-        transform: 'translate(10px, 0px)'
-    };
-    expect(createdStyle).toEqual(actualStyle);
-});
+describe('HTMLPhysics tests', () => {
+    let physics: HTMLPhysics;
+    beforeEach(() => 
+    {
+        physics = new HTMLPhysics();
+    });
 
-test('Move a box to the left and up, but closer to left by 5%', () => {
+    test('Move a box to the right', () => {
+        const createdStyle = physics.createMove(Direction.Right, 10)
+        const actualStyle: React.CSSProperties = {
+            transform: 'translate(10px, 0px)'
+        };
+        expect(createdStyle).toEqual(actualStyle);
+    });
 
+    test('Move a box to the left and up, but closer to left by 5%', () => {
+        let amalgamatedDirection;
+        
+        const createdStyle = physics.createMove(amalgamatedDirection, 10)
+
+    });
 });
