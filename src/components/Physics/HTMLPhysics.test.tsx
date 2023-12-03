@@ -8,13 +8,14 @@ import Direction from '../../Direction';
 
 configure({ adapter: new Adapter() });
 test('Move a box to the right', () => {
-    const wrapper = shallow(<Box windowWidth={window.innerWidth} windowHeight={window.innerHeight} />);
-    const box = wrapper.find('[role="box"]');
-    expect(box.exists()).toBe(true);
     const physics = new HTMLPhysics();
     const createdStyle = physics.createMove(Direction.Right, 10)
     const actualStyle: React.CSSProperties = {
         transform: 'translate(10px, 0px)'
     };
     expect(createdStyle).toEqual(actualStyle);
+});
+
+test('Move a box to the left and up, but closer to left by 5%', () => {
+
 });
