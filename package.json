@@ -6,7 +6,8 @@
   "scripts": {
     "test_and_commit": "@powershell ./test_or_revert.ps1",
     "test": "jest",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "build": "webpack --mode production --no-watch"
   },
   "keywords": [],
   "author": "",

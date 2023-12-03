@@ -1,5 +1,9 @@
 # FILEPATH: /d:/WebDevProjs/TCR_JavaScript/test_or_revert.ps1
 
+# Run build, exit if it fails
+npm run build
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 # Run Jest tests
 npx jest
 
