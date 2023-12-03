@@ -6,6 +6,7 @@ npx jest
 # Check if tests passed
 if ($LASTEXITCODE -ne 0) {
   # Tests failed, reset changes
+  git clean -f -d
   git reset --hard
 } else {
   # Tests passed, prompt for commit message
