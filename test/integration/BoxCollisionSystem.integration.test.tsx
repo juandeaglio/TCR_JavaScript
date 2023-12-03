@@ -4,6 +4,7 @@ import Box from '../../src/components/Box/Box'
 import '@testing-library/jest-dom';
 import { number } from 'prop-types';
 import CollisionSystem from '../../src/components/CollisionSystem/CollisionSystem';
+import HTMLPhysics from '../../src/components/Physics/HTMLPhysics';
 
 
 const max_width = 1024;
@@ -74,8 +75,7 @@ test('A box that does not move and doesnt collide', () => {
 test('A box that moves right and collides once, and then stops', () => {
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
-    setTimeout(() => {}, 1000);
-    const collisionCount = box.getAttribute('data-collision-count');
+    const physics = new HTMLPhysics();
 });
 
 export default TestApp;
