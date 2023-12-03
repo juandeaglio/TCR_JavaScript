@@ -5,17 +5,12 @@ import '@testing-library/jest-dom';
 import { number } from 'prop-types';
 import CollisionSystem from '../../src/components/CollisionSystem/CollisionSystem';
 import HTMLPhysics from '../../src/components/Physics/HTMLPhysics';
-
+import Direction from '../../src/Direction';
 
 const max_width = 1024;
 const max_height = 1024;
 
-enum Direction {
-    Up = 0,
-    Right = 90,
-    Down = 180,
-    Left = 270
-}
+
 
 function normalizeDirection(direction: number): number {
     direction = direction % 360;
@@ -76,6 +71,7 @@ test('A box that moves right and collides once, and then stops', () => {
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
     const physics = new HTMLPhysics();
+    physics.move(box, Direction.Right, 10);
 });
 
 export default TestApp;
