@@ -67,11 +67,11 @@ test('A box that does not move and doesnt collide', () => {
     expect(collisionCount).toBe('0');
 });
 
-test('A box that moves right and collides once, and then stops', () => {
+test('A box that moves right for 1 second and then stops', () => {
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
     const physics = new HTMLPhysics();
-    physics.move(box, Direction.Right, 10);
+    const move = physics.createMove(Direction.Right, 10);
 });
 
 export default TestApp;

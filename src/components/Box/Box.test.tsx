@@ -1,7 +1,7 @@
 import { configure } from 'enzyme';
 import Adapter from '@cfaester/enzyme-adapter-react-18';
 import { shallow } from 'enzyme';
-import Box from '../../src/components/Box/Box';
+import Box from './Box';
 import React from 'react';
 
 configure({ adapter: new Adapter() });

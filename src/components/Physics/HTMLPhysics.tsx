@@ -1,10 +1,14 @@
+import React, {CSSProperties} from 'react';
+
 class HTMLPhysics {
     constructor() {
     }
 
-    move(element: HTMLElement, direction: number, speed: number): void {
-        // Apply your physics-related CSS styles or logic to the element
-        // For example, changing position, rotation, etc.
+    createMove(direction: number, speed: number): React.CSSProperties {
+        const move = {
+            transform: `translate(${speed}px, 0px)`
+        };
+        return move;
     }
 
     // Add any other methods related to physics here
