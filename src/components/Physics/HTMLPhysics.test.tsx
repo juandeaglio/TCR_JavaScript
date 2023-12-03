@@ -1,5 +1,5 @@
 import React from 'react';
-import HTMLPhysics from './HTMLPhysics';
+import {HTMLPhysics, Vector} from './HTMLPhysics';
 import Direction from '../../Direction';
 
 describe('HTMLPhysics tests', () => {
@@ -19,12 +19,15 @@ describe('HTMLPhysics tests', () => {
 
     test('Move a box to the left and up, but closer to left by 5%', () => {
         let amalgamatedDirection;
-        amalgamatedDirection = physics.generateVector([Direction.Left, Direction.Up]);
-        expect(amalgamatedDirection).toBeCloseTo(-45.0);
+        amalgamatedDirection = physics.generateVectorFromVectors([new Vector(315.0, Math.sqrt(2)), new Vector(270.0, 1)])
+        expect(amalgamatedDirection.direction).toBeCloseTo(315.0);
+        expect(amalgamatedDirection.speed).toBeCloseTo(Math.sqrt(2));
         //fivePercent of left means, we veer downwards towards the left by 5%
         //in this instance, we've applied a -45 degree angle of direction (2d vector), by applied an up and left movement
         //in addition, we also want to go towards the 'left' direction by an additional 5%, ending up at something like -47.25 degree angle
-        //const fivePercentLeft = 
+        // let fivePercentLeft = amalgamatedDirection - Direction.Left;
+        // fivePercentLeft -= fivePercentLeft * 0.05;
+
         //amalgamatedDirection = physics.generateVector(amalgamatedDirection)
         //const createdStyle = physics.createMove(amalgamatedDirection, 10)
 

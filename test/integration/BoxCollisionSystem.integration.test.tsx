@@ -4,7 +4,7 @@ import Box from '../../src/components/Box/Box'
 import '@testing-library/jest-dom';
 import { number } from 'prop-types';
 import CollisionSystem from '../../src/components/CollisionSystem/CollisionSystem';
-import HTMLPhysics from '../../src/components/Physics/HTMLPhysics';
+import {HTMLPhysics} from '../../src/components/Physics/HTMLPhysics';
 import Direction from '../../src/Direction';
 
 const max_width = 1024;

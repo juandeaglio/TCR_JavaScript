@@ -1,11 +1,28 @@
 import React, {CSSProperties} from 'react';
 
+const normalizeAngle = (angle: number): number => {
+    let normalizedAngle = angle % 360.0;
+    if (normalizedAngle < 0) {
+        normalizedAngle += 360.0;
+    }
+    return normalizedAngle;
+}
+class Vector {
+    direction: number;
+    speed: number;
+
+    constructor(direction: number, speed: number) {
+        this.direction = direction;
+        this.speed = speed;
+    }
+}
+
 class HTMLPhysics {
     constructor() {
     }
 
-    generateVector(directions: Array<number>): number {
-        return -45.0
+    generateVectorFromVectors(directions: Array<Vector>): Vector {
+        return new Vector(315.0, Math.sqrt(2));
     }
 
     createMove(direction: number, speed: number): React.CSSProperties {
@@ -19,4 +36,4 @@ class HTMLPhysics {
     // Add any other methods related to physics here
 }
 
-export default HTMLPhysics;
+export {HTMLPhysics, Vector, normalizeAngle};
