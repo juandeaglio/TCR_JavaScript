@@ -2,7 +2,7 @@ class HTMLPhysics {
     constructor() {
     }
 
-    applyPhysics(element: HTMLElement): void {
+    move(element: HTMLElement, direction: number, speed: number): void {
         // Apply your physics-related CSS styles or logic to the element
         // For example, changing position, rotation, etc.
     }
