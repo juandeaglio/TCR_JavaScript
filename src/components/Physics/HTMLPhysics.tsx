@@ -12,7 +12,7 @@ class Vector {
     speed: number;
 
     constructor(direction: number, speed: number) {
-        this.direction = direction;
+        this.direction = normalizeAngle(direction);
         this.speed = speed;
     }
 }
