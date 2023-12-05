@@ -1,6 +1,6 @@
 # TCR_TypeScript
 
-Mirroring this on a GitLab repo where a pipeline for building/testing/containerizing exists. 
+Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. 
 Building up the code for this.
 
 npm run build
