@@ -1,7 +1,8 @@
 # TCR_TypeScript
 
 Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. 
-Building up the code for this.
+
+Slowly building up the code for this as of 12/5/2023.
 
 npm run build
 npm run test
