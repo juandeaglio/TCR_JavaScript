@@ -46,7 +46,9 @@ class HTMLPhysics {
         });
         return new Vector(315.0 * Math.PI / 180, Math.sqrt(2));
     }
-
+    generateVectorFromComponents(x: number, y: number): Vector {
+        return new Vector(0, 0);
+    }
     generateComponentsFrom(vector: Vector): Components {
         return new Components(vector);
     }

@@ -4,6 +4,8 @@ import Direction from '../../Direction';
 
 describe('HTMLPhysics tests', () => {
     let physics: HTMLPhysics;
+    const vector1: Vector = new Vector(360.0, 1, 1);
+
     beforeEach(() => 
     {
         physics = new HTMLPhysics();
@@ -18,11 +20,13 @@ describe('HTMLPhysics tests', () => {
     });
 
     test ('Generate correct components from a vector', () => {
-        const vector = new Vector(360.0, 1, 1);
-        const components = physics.generateComponentsFrom(vector);
-        expect(vector.direction).toBeCloseTo(0);
+        const components = physics.generateComponentsFrom(vector1);
+        expect(vector1.direction).toBeCloseTo(0);
     });
 
+    test('Generate vector from components', () => {
+        const vector = physics.generateVectorFromComponents(1, 1);
+    });
     test('Move a box to the left and up', () => {
         let amalgamatedDirection;
         const vector1 = new Vector(360.0, 1, 1);
