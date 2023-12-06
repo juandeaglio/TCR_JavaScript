@@ -27,8 +27,9 @@ class Components{
     x: number;
     y: number;
     constructor(vector: Vector){
-        this.x = vector.speed * Math.cos(vector.direction);
-        this.y = vector.speed * Math.sin(vector.direction);
+        let adjustedDirection = vector.direction - Math.PI / 2;
+        this.x = vector.speed * Math.cos(adjustedDirection);
+        this.y = vector.speed * Math.sin(adjustedDirection);
     }
 }
 
@@ -48,7 +49,8 @@ class HTMLPhysics {
     generateVectorFromComponents(components: Components): Vector {
         let y = components.y;
         let x = components.x;
-        const direction = Math.atan2(y, x);
+        let direction = Math.atan2(y, x);
+        direction = direction + Math.PI / 2;
         const speed = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
         return new Vector(direction, speed);
     }
@@ -60,8 +62,10 @@ class HTMLPhysics {
         const direction: number = vector.direction;
         const speed: number = vector.speed;
 
+        const components = new Components(vector);
+
         const move = {
-            transform: `translate(${speed}px, 0px)`
+            transform: `translate(${components.x}px, ${components.y}px)`
 
         };
         return move;

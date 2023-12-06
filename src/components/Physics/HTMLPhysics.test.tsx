@@ -14,12 +14,20 @@ describe('HTMLPhysics tests', () => {
     });
 
     test('Move a box to the right', () => {
-        const createdStyle = physics.createMove(new Vector(Direction.Right, 10))
+        const createdStyle = physics.createMove(new Vector(Direction.Right, 10, 1))
         const actualStyle: React.CSSProperties = {
             transform: 'translate(10px, 0px)'
         };
         expect(createdStyle).toEqual(actualStyle);
     });
+
+    test ('Generate correct components from a vector', () => {
+        const components = physics.generateComponentsFrom(new Vector(Direction.Right, 10, 1));
+        expect(components.y).toBeCloseTo(0);
+        expect(components.x).toBeCloseTo(10);
+    });
+
+
 
     test ('Generate correct components from a vector', () => {
         const components = physics.generateComponentsFrom(vector1);
