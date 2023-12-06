@@ -1,9 +1,9 @@
 import React, {CSSProperties} from 'react';
 
 const normalizeAngle = (angle: number): number => {
-    let normalizedAngle = angle % 360.0;
+    let normalizedAngle = angle % (Math.PI * 2);
     if (normalizedAngle < 0) {
-        normalizedAngle += 360.0;
+        normalizedAngle += (Math.PI * 2);
     }
     return normalizedAngle;
 }
@@ -11,8 +11,14 @@ class Vector {
     direction: number;
     speed: number;
 
-    constructor(direction: number, speed: number) {
-        this.direction = normalizeAngle(direction);
+    constructor(direction: number, speed: number, degree?: number) {
+        if (degree) {
+            this.direction = direction * Math.PI / 180.0;
+            this.direction = normalizeAngle(direction);
+        }
+        else {
+            this.direction = direction;
+        }
         this.speed = speed;
     }
 }
