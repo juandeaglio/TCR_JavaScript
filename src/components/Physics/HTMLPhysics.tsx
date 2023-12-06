@@ -15,11 +15,11 @@ class Vector {
     constructor(direction: number, speed: number, degree?: number) {
         if (degree == 1) {
             this.direction = direction * Math.PI / 180.0;
-            this.direction = normalizeAngle(this.direction);
         }
         else {
             this.direction = direction;
         }
+        this.direction = normalizeAngle(this.direction);
         this.speed = speed;
     }
 }
@@ -46,8 +46,12 @@ class HTMLPhysics {
         });
         return new Vector(315.0 * Math.PI / 180, Math.sqrt(2));
     }
-    generateVectorFromComponents(x: number, y: number): Vector {
-        return new Vector(0, 0);
+    generateVectorFromComponents(components: Components): Vector {
+        let y = components.y;
+        let x = components.x;
+        const direction = Math.atan2(y, x);
+        const speed = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+        return new Vector(direction, speed);
     }
     generateComponentsFrom(vector: Vector): Components {
         return new Components(vector);
@@ -64,4 +68,4 @@ class HTMLPhysics {
     // Add any other methods related to physics here
 }
 
-export {HTMLPhysics, Vector, normalizeAngle};
+export {HTMLPhysics, Vector, Components, normalizeAngle};

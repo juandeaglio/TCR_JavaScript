@@ -1,5 +1,5 @@
 import React from 'react';
-import {HTMLPhysics, Vector} from './HTMLPhysics';
+import {HTMLPhysics, Vector, Components} from './HTMLPhysics';
 import Direction from '../../Direction';
 
 describe('HTMLPhysics tests', () => {
@@ -25,8 +25,11 @@ describe('HTMLPhysics tests', () => {
     });
 
     test('Generate vector from components', () => {
-        const vector = physics.generateVectorFromComponents(1, 1);
+        const vector = physics.generateVectorFromComponents(new Components(new Vector(315.0, Math.sqrt(2), 1)));
+        expect(vector.speed).toBeCloseTo(Math.sqrt(2));
+        expect(vector.direction * 180 / Math.PI).toBeCloseTo(315.0);
     });
+
     test('Move a box to the left and up', () => {
         let amalgamatedDirection;
         const vector1 = new Vector(360.0, 1, 1);
