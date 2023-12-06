@@ -38,8 +38,11 @@ class HTMLPhysics {
     }
 
     generateVectorFromVectors(directions: Array<Vector>): Vector {
+        let summedComponents = new Components(new Vector(0, 0));
         directions.forEach(vector => {
-            this.generateComponentsFrom(vector);
+            const generated: Components = this.generateComponentsFrom(vector);
+            summedComponents.x += generated.x;
+            summedComponents.y += generated.y;
         });
         return new Vector(315.0 * Math.PI / 180, Math.sqrt(2));
     }
