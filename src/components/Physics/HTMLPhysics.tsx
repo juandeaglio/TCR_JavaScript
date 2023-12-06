@@ -1,3 +1,4 @@
+import { array } from 'prop-types';
 import React, {CSSProperties} from 'react';
 
 const normalizeAngle = (angle: number): number => {
@@ -23,12 +24,28 @@ class Vector {
     }
 }
 
+class Components{
+    x: number;
+    y: number;
+    constructor(vector: Vector){
+        this.x = vector.speed * Math.cos(vector.direction);
+        this.y = vector.speed * Math.sin(vector.direction);
+    }
+}
+
 class HTMLPhysics {
     constructor() {
     }
 
     generateVectorFromVectors(directions: Array<Vector>): Vector {
-        return new Vector(315.0, Math.sqrt(2));
+        directions.forEach(vector => {
+            this.generateComponentsFrom(vector);
+        });
+        return new Vector(315.0 * Math.PI / 180, Math.sqrt(2));
+    }
+
+    generateComponentsFrom(vector: Vector): Components {
+        return new Components(vector);
     }
 
     createMove(direction: number, speed: number): React.CSSProperties {
