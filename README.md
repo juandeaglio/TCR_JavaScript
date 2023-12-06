@@ -17,7 +17,9 @@ I'm approaching this problem from a test-first perspective. I want to test colli
 
 I'm writing an integration test which just features a simple App JSX structure. One that seeks to test the existence of collisions and predictable movement of elements. 
 
+### Where does the movement come from?
 Unit tests test the inner-workings of how new transforms are generated into CSS, testing the correct angle and magnitude of a 2-d vector.
+The correct CSS transform is generated based on HTMLPhysics.
 
 ## A blog in the works:
 With this project, I'm making a blog. I'll upload my deepest inner-most thoughts soon, so that everyone is familiar with the evil magical conjurations required to make such a system.
