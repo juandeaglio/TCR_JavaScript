@@ -44,7 +44,7 @@ class HTMLPhysics {
             summedComponents.x += generated.x;
             summedComponents.y += generated.y;
         });
-        return new Vector(315.0 * Math.PI / 180, Math.sqrt(2));
+        return this.generateVectorFromComponents(summedComponents);
     }
     generateVectorFromComponents(components: Components): Vector {
         let y = components.y;
