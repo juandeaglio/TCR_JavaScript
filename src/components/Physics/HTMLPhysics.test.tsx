@@ -14,7 +14,7 @@ describe('HTMLPhysics tests', () => {
     });
 
     test('Move a box to the right', () => {
-        const createdStyle = physics.createMove(Direction.Right, 10)
+        const createdStyle = physics.createMove(new Vector(Direction.Right, 10))
         const actualStyle: React.CSSProperties = {
             transform: 'translate(10px, 0px)'
         };

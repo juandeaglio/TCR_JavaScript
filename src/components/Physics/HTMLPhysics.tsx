@@ -1,5 +1,4 @@
-import { array } from 'prop-types';
-import React, {CSSProperties} from 'react';
+import React from 'react';
 
 const normalizeAngle = (angle: number): number => {
     let normalizedAngle = angle % (Math.PI * 2);
@@ -57,7 +56,10 @@ class HTMLPhysics {
         return new Components(vector);
     }
 
-    createMove(direction: number, speed: number): React.CSSProperties {
+    createMove(vector: Vector): React.CSSProperties {
+        const direction: number = vector.direction;
+        const speed: number = vector.speed;
+
         const move = {
             transform: `translate(${speed}px, 0px)`
 
