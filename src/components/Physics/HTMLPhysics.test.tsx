@@ -17,6 +17,12 @@ describe('HTMLPhysics tests', () => {
         expect(createdStyle).toEqual(actualStyle);
     });
 
+    test ('Generate correct components from a vector', () => {
+        const vector = new Vector(360.0, 1, 1);
+        const components = physics.generateComponentsFrom(vector);
+        expect(vector.direction).toBeCloseTo(0);
+    });
+
     test('Move a box to the left and up', () => {
         let amalgamatedDirection;
         const vector1 = new Vector(360.0, 1, 1);

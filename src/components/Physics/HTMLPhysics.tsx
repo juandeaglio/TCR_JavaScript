@@ -13,9 +13,9 @@ class Vector {
     speed: number;
 
     constructor(direction: number, speed: number, degree?: number) {
-        if (degree) {
+        if (degree == 1) {
             this.direction = direction * Math.PI / 180.0;
-            this.direction = normalizeAngle(direction);
+            this.direction = normalizeAngle(this.direction);
         }
         else {
             this.direction = direction;
