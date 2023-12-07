@@ -6,6 +6,7 @@ import CollisionSystem from '../../src/components/CollisionSystem/CollisionSyste
 import {HTMLPhysics} from '../../src/components/Physics/HTMLPhysics';
 import Vector from '../../src/components/Physics/Vector';
 import Direction from '../../src/Direction';
+import EntityControls from '../../src/components/EntityControls/EntityControls';
 
 const max_width = 1024;
 const max_height = 1024;
@@ -71,8 +72,7 @@ test('A box that moves right for 1 second and then stops', () => {
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
     const physics = new HTMLPhysics();
-    // const entityControls = new EntityControls();
-    // entityControls.move(box, Direction.Right, 10);
+    const entityControls = new EntityControls();
 });
 
 export default TestApp;
