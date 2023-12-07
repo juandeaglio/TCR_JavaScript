@@ -1,5 +1,6 @@
 import React from 'react';
-import {HTMLPhysics, Vector, Components} from './HTMLPhysics';
+import {HTMLPhysics, Components} from './HTMLPhysics';
+import Vector from './Vector';
 import Direction from '../../Direction';
 
 describe('HTMLPhysics tests', () => {
@@ -33,14 +34,18 @@ describe('HTMLPhysics tests', () => {
         expect(components.y).toBeCloseTo(10);
     });
 
+    test('Move a box downwards', () => {
+        const components: Components = physics.generateComponentsFrom(new Vector(Direction.Left, 10, 1));
+        expect(components.x).toBeCloseTo(-10);
+        expect(components.y).toBeCloseTo(0);
+    });
+
 
     test ('Generate correct components from a vector', () => {
         const components = physics.generateComponentsFrom(new Vector(Direction.Right, 10, 1));
         expect(components.y).toBeCloseTo(0);
         expect(components.x).toBeCloseTo(10);
     });
-
-
 
     test ('Generate correct components from a vector', () => {
         const components = physics.generateComponentsFrom(vector1);

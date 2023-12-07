@@ -3,7 +3,8 @@ import { render, screen } from '@testing-library/react';
 import Box from '../../src/components/Box/Box'
 import '@testing-library/jest-dom';
 import CollisionSystem from '../../src/components/CollisionSystem/CollisionSystem';
-import {HTMLPhysics, Vector} from '../../src/components/Physics/HTMLPhysics';
+import {HTMLPhysics} from '../../src/components/Physics/HTMLPhysics';
+import Vector from '../../src/components/Physics/Vector';
 import Direction from '../../src/Direction';
 
 const max_width = 1024;
