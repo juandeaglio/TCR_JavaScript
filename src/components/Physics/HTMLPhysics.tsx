@@ -59,9 +59,6 @@ class HTMLPhysics {
     }
 
     createMove(vector: Vector): React.CSSProperties {
-        const direction: number = vector.direction;
-        const speed: number = vector.speed;
-
         const components = new Components(vector);
 
         const move = {

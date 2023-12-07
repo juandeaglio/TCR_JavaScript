@@ -21,6 +21,19 @@ describe('HTMLPhysics tests', () => {
         expect(createdStyle).toEqual(actualStyle);
     });
 
+    test('Move a box upwards', () => {
+        const components: Components = physics.generateComponentsFrom(new Vector(Direction.Up, 10, 1));
+        expect(components.x).toBeCloseTo(0);
+        expect(components.y).toBeCloseTo(-10);
+    });
+
+    test('Move a box downwards', () => {
+        const components: Components = physics.generateComponentsFrom(new Vector(Direction.Down, 10, 1));
+        expect(components.x).toBeCloseTo(0);
+        expect(components.y).toBeCloseTo(10);
+    });
+
+
     test ('Generate correct components from a vector', () => {
         const components = physics.generateComponentsFrom(new Vector(Direction.Right, 10, 1));
         expect(components.y).toBeCloseTo(0);
