@@ -3,7 +3,7 @@ import Vector from './Vector';
 import Components from './Components';
 class HTMLPhysics {
     generateVectorFromVectors(directions: Array<Vector>): Vector {
-        let summedComponents = new Components(new Vector(0, 0));
+        let summedComponents = new Components(new Vector());
         directions.forEach(vector => {
             const generated: Components = this.generateComponentsFrom(vector);
             summedComponents.x += generated.x;
@@ -18,7 +18,7 @@ class HTMLPhysics {
         direction = direction + Math.PI / 2;
         const speed = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 
-        return new Vector(direction, speed);
+        return new Vector({direction: direction, speed: speed});
     }
     generateComponentsFrom(vector: Vector): Components {
         return new Components(vector);
