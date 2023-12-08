@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, {useEffect} from 'react';
+import EntityControls from '../EntityControls/EntityControls';
 
 const Box: React.FC<{ windowWidth: number, windowHeight: number }> = (props) => {
   const centerX = props.windowWidth / 2;

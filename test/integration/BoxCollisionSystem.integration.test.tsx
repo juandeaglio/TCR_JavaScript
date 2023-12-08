@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import Box from '../../src/components/Box/Box'
 import '@testing-library/jest-dom';
 import CollisionSystem from '../../src/components/CollisionSystem/CollisionSystem';
@@ -10,7 +10,6 @@ import EntityControls from '../../src/components/EntityControls/EntityControls';
 
 const MAX_WIDTH = 1024;
 const MAX_HEIGHT = 1024;
-
 
 type TestAppProps = {
     direction?: number,
@@ -61,10 +60,15 @@ test('A box that does not move and doesnt collide', () => {
 });
 
 test('A box that moves right for 1 second and then stops', () => {
+    jest.useFakeTimers();
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
     const physics = new HTMLPhysics();
-    const entityControls = new EntityControls();
+    const entityControls = new EntityControls(physics);
+    act(() => {
+
+        jest.advanceTimersByTime(1000);
+    })
 });
 
 export default TestApp;
