@@ -8,15 +8,9 @@ import Vector from '../../src/components/Physics/Vector';
 import Direction from '../../src/Direction';
 import EntityControls from '../../src/components/EntityControls/EntityControls';
 
-const max_width = 1024;
-const max_height = 1024;
+const MAX_WIDTH = 1024;
+const MAX_HEIGHT = 1024;
 
-
-
-function normalizeDirection(direction: number): number {
-    direction = direction % 360;
-    return Direction[Direction[direction] as keyof typeof Direction];
-}
 
 type TestAppProps = {
     direction?: number,
@@ -25,9 +19,9 @@ type TestAppProps = {
     screenHeight?: number
 }
 
-const TestApp: React.FC<TestAppProps> = ({ direction, collisionSystem, screenWidth, screenHeight }) => {
-    const width = screenWidth || max_width;
-    const height = screenHeight || max_height;
+const TestApp: React.FC<TestAppProps> = ({ direction, collisionSystem, screenWidth = MAX_WIDTH, screenHeight = MAX_HEIGHT }) => {
+    const width = screenWidth || MAX_WIDTH;
+    const height = screenHeight || MAX_HEIGHT;
 
 
     // Assuming Box expects an object with windowWidth and widthHeight
@@ -40,10 +34,8 @@ const TestApp: React.FC<TestAppProps> = ({ direction, collisionSystem, screenWid
         <div>
             {CollisionSystem && <CollisionSystem />}
             <svg width={screenWidth} height={screenHeight}>
-
-                {Box(boxProps)}
+                <Box {...boxProps} />
             </svg>
-            
         </div>
     );
 };
@@ -53,8 +45,8 @@ test('A box exists in the center of the screen', () => {
     const box = screen.getByRole('box');
     expect(box).toBeInTheDocument();
 
-    const centerX = max_width / 2;
-    const centerY = max_height / 2;
+    const centerX = MAX_WIDTH / 2;
+    const centerY = MAX_HEIGHT / 2;
 
     expect(box).toHaveAttribute('x', centerX.toString());
     expect(box).toHaveAttribute('y', centerY.toString());
