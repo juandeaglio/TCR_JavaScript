@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {createRoot} from 'react-dom/client'
 import { HTMLPhysics } from '../Physics/HTMLPhysics';
 import {act} from 'react-dom/test-utils'
-import Box from '../Box/Box';
 import { queryByTestId } from '@testing-library/react';
 import Vector from '../Physics/Vector';
 import Direction from '../../Direction';
+import { BoxWithPhysics } from '../Box/BoxWithPhysics';
 
 const MAX_WIDTH = 1024;
 const MAX_HEIGHT = 1024;
@@ -14,9 +14,9 @@ interface Style {
     transform?: string;
 }
   
-const physics = new HTMLPhysics();
+export const physics = new HTMLPhysics();
 
-const usePhysicsStyle = (physics: HTMLPhysics, direction: number) => {
+export const usePhysicsStyle = (physics: HTMLPhysics, direction: number) => {
     const [style, setStyle] = useState<Style>({});
     const [move, setMoving] = useState<string>();
   
@@ -28,22 +28,6 @@ const usePhysicsStyle = (physics: HTMLPhysics, direction: number) => {
     }, [physics, direction]);
   
     return [style, move];
-};
-
-interface BoxWithPhysicsProps {
-    direction: Direction;
-    windowWidth: number;
-    windowHeight: number;
-}
-
-  const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = ({ direction, windowWidth, windowHeight, ...otherProps }) => {
-    const styleAndClassname = usePhysicsStyle(physics, direction); // physics needs to be in scope
-    const style = styleAndClassname[0];
-    const move = styleAndClassname[1];
-  
-    return (
-        <Box className={move} style={style} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
-    );
 };
 
 describe('Entity controls tests', () => {
