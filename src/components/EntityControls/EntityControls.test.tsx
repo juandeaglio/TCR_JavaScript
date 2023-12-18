@@ -18,13 +18,16 @@ const physics = new HTMLPhysics();
 
 const usePhysicsStyle = (physics: HTMLPhysics, direction: number) => {
     const [style, setStyle] = useState<Style>({});
+    const [move, setMoving] = useState<string>();
   
     useEffect(() => {
       const newStyle = physics.createMove(new Vector({direction: Direction.Right, speed: 10}));
       setStyle(newStyle);
+      const movingDirection = 'move-' + parseFloat(Direction.Right.toFixed(3)).toString();
+      setMoving(movingDirection);
     }, [physics, direction]);
   
-    return style;
+    return [style, move];
 };
 
 interface BoxWithPhysicsProps {
@@ -34,10 +37,12 @@ interface BoxWithPhysicsProps {
 }
 
   const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = ({ direction, windowWidth, windowHeight, ...otherProps }) => {
-    const style = usePhysicsStyle(physics, direction); // physics needs to be in scope
+    const styleAndClassname = usePhysicsStyle(physics, direction); // physics needs to be in scope
+    const style = styleAndClassname[0];
+    const move = styleAndClassname[1];
   
     return (
-        <Box style={style} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
+        <Box className={move} style={style} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
     );
 };
 
@@ -45,8 +50,7 @@ describe('Entity controls tests', () => {
     const TestApp = () => {
         return (
             <svg >
-
-                <Box data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} />
+                <BoxWithPhysics data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} />
             </svg>
         )
     }
@@ -67,7 +71,10 @@ describe('Entity controls tests', () => {
         act(() => root.render(box));
         jest.advanceTimersByTime(1000);
 
-        expect(queryByTestId(container, 'Box-1')).toBeTruthy();
+        const boxElement = queryByTestId(container, 'Box-1');
+        expect(boxElement).toBeTruthy();
+
+        expect(boxElement.classList.toString()).toContain('move-90');
     })
     
 });
