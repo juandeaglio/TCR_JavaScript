@@ -22,4 +22,5 @@ Unit tests test the inner-workings of how new transforms are generated into CSS,
 The correct CSS transform is generated based on HTMLPhysics.
 
 ## A blog in the works:
-With this project, I'm making a blog. I'll upload my deepest inner-most thoughts soon, so that everyone is familiar with the evil magical conjurations required to make such a system.
+With this project, I'm making a blog. I'll upload my deepest inner-most thoughts soon, so that everyone is familiar with the evil magical conjurations required to make such a system (Evil programming things like, do I temporarily break out of TCR to fix a dumb typo? Or do I create a generic "Controller" class which "controls" things?).
+In the blog, I document my daily struggles, approaches to the code, and think about how I'll structure it when I'm making tests. Things like how do I form classes, how do I split apart responsibilities and allow modularity?
