@@ -64,7 +64,7 @@ test('A box that moves right for 1 second and then stops', () => {
     render(<TestApp direction={Direction.Right} collisionSystem={CollisionSystem} />);
     const box = screen.getByRole('box');
     const physics = new HTMLPhysics();
-    const entityControls = new EntityControls(physics);
+    const entityControls = <EntityControls physics={physics} />
     act(() => {
 
         jest.advanceTimersByTime(1000);

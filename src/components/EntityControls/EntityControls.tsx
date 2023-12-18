@@ -1,15 +1,9 @@
 import { HTMLPhysics } from "../Physics/HTMLPhysics";
+import React, { Component } from 'react';
 
-class EntityControls {
-    physics: HTMLPhysics;
-    constructor(physics: HTMLPhysics) {
-        this.physics = physics;
-    }
-    move = (direction: number, speed?: number) => {
-        return this;
-    };
-    speed = (speed: number) => {
-        return this;
-    };
+const EntityControls: React.FC<{physics: HTMLPhysics}> = (physics) => {
+    return(
+        <div />
+    )
 }
 export default EntityControls;
