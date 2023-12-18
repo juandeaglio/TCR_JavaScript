@@ -18,7 +18,15 @@ describe('Entity controls tests', () => {
             </svg>
         )
     }
-    
+    beforeEach(() => {
+        jest.useFakeTimers();
+    })
+
+    afterEach(() => {
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
+    })
+
     test('Test move a Box to the right', () => {
         const MAX_WIDTH = 1024;
         const MAX_HEIGHT = 1024;
@@ -28,6 +36,7 @@ describe('Entity controls tests', () => {
 
         const root = createRoot(container);
         act(() => root.render(box));
+        jest.advanceTimersByTime(1000);
 
         expect(queryByTestId(container, 'Box-1')).toBeTruthy();
     })
