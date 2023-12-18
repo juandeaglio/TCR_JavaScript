@@ -22,11 +22,6 @@ describe('Entity controls tests', () => {
         jest.useFakeTimers();
     })
 
-    afterEach(() => {
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
-    })
-
     test('Test move a Box to the right', () => {
         const box = <TestApp />;
         const container = document.createElement('div');
@@ -36,9 +31,12 @@ describe('Entity controls tests', () => {
         jest.advanceTimersByTime(1000);
 
         const boxElement = queryByTestId(container, 'Box-1');
-        expect(boxElement).toBeTruthy();
 
         expect(boxElement.classList.toString()).toContain('move-90');
     })
-    
+
+    afterEach(() => {
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
+    })
 });
