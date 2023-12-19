@@ -3,17 +3,17 @@
 ## Commands (as seen in package.json):
 test_and_commit: This is my workflow for coding with Test && Commit || Revert. It checks for whether we can build or not, tests the code, and commits if it all succeeds, otherwise it goes back to last successful commit via Git.
 
-test: These are the jest tests.
+**test**: These are the jest tests.
 
-start: This is the development server via webpack.
+**start**: This is the development server via webpack.
 
-build: This is the production version served via webpack (might be more obfuscated).
+**build**: This is the production version served via webpack (might be more obfuscated).
 
-start-server: This starts the development server and is part of a playwright test suite.
+**start-serve**: This starts the development server and is part of a playwright test suite.
 
-test-playwright: This waits for localhost:3000 to be accessible (if fails to start check for existing bindings on port 3000, i.e. some app is using your port 3000), it also executes playwright tests.
+**test-playwright**: This waits for localhost:3000 to be accessible (if fails to start check for existing bindings on port 3000, i.e. some app is using your port 3000), it also executes playwright tests.
 
-test-with-server: Concurrently executes the start-server and test-playwright (blocks until port 3000 is accessible) scripts.
+**test-with-server**: Concurrently executes the start-server and test-playwright (blocks until port 3000 is accessible) scripts.
 ***
 ## Current plans:
 Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. 
