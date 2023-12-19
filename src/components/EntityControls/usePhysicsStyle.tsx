@@ -12,7 +12,7 @@ export const usePhysicsStyle = (physics: HTMLPhysics, direction: number) => {
     const [move, setMoving] = useState<string>();
 
     useEffect(() => {
-        const newStyle = physics.createMove(new Vector({ direction: Direction.Right, speed: 10 }));
+        const newStyle = physics.createMove(new Vector({ direction: Direction.Right, speed: 10, inDegrees: true }));
         setStyle(newStyle);
         const movingDirection = 'move-' + parseFloat(Direction.Right.toFixed(3)).toString();
         setMoving(movingDirection);
