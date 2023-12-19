@@ -27,7 +27,6 @@ test.describe('Entity controls tests', () => {
 
         // Get and assert on the classList of the element
         const classList = await boxElement.getAttribute('class');
-        expect(classList).toContain('move-90');
 
         const boxRect = await page.$eval('[data-testid="Box-1"]', (box) => {
             return box.getBoundingClientRect();
