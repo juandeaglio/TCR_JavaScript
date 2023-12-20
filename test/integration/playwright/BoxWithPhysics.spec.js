@@ -49,7 +49,7 @@ test.describe('Entity controls tests', () => {
         });
 
         // Assert the position of the box
-        expect(boxRect.left).toBeCloseTo(expectedX + 10, 0.01);
+        expect(boxRect.left).toBeCloseTo(expectedX + 10, 0.1);
         expect(boxRect.top).toBeCloseTo(expectedY, 0.1);
     });
 });
