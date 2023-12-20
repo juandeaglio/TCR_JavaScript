@@ -16,7 +16,8 @@ test_and_commit: This is my workflow for coding with Test && Commit || Revert. I
 **test-with-server**: Concurrently executes the start-server and test-playwright (blocks until port 3000 is accessible) scripts.
 ***
 ## Current plans:
-Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. 
+Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. This is duplicate to the GitLab because I like having the metrics of my commits all on my GitHub (haven't looked into a way which integrates metrics between the two).
+[GitLab Repository](https://gitlab.com/learningtcr/TCR_TypeScript/-/pipelines)
 
 Slowly building up the code for this as of 12/19/2023.
 
