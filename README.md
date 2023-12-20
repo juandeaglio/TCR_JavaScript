@@ -3,7 +3,7 @@ This project is inspired by my first fullstack web dev project: [Book Haven, e-c
 ***
 **Commands (as seen in package.json)**:
 
-test_and_commit.ps1: This is my workflow for coding with Test && Commit || Revert. It checks for whether we can build or not, tests the code, and commits if it all succeeds, otherwise it goes back to last successful commit via Git.
+**test_and_commit.ps1**: This is my workflow for coding with Test && Commit || Revert. It checks for whether we can build or not, tests the code, and commits if it all succeeds, otherwise it goes back to last successful commit via Git.
 
 Jest & Build scripts:
 
