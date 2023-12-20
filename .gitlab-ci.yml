@@ -38,7 +38,7 @@ playwright tests:
   stage: playwright-test
   image: mcr.microsoft.com/playwright:v1.40.0-jammy
   script:
-    - npm run test-with-server
+    - ./handle_test_results.sh
 
 
 build docker image:
