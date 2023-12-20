@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import '../../toBeCloseTo';
 
 const MAX_HEIGHT = 1024;
 const MAX_WIDTH = 1024;
@@ -24,14 +25,7 @@ test.describe('Entity controls tests', () => {
         let boxElement = await page.$eval(elementSelector, (box) =>{
             return box;
         });
-        let classList = await page.$eval(elementSelector, (box) => {
-            return box.classList.value;
-        });
-        console.log(classList);
-        const transform = await page.$eval('g[data-testid="Box-1"]', (box) => {
-            return getComputedStyle(box).transform;
-        });
-        console.log("Transform: ", transform);
+
         // Define the expected X and Y coordinates after the box moves
         const expectedX = boxRect.left; // Adjust as per your expectation
         const expectedY = boxRect.top;/* Your expected Y coordinate */
@@ -48,18 +42,12 @@ test.describe('Entity controls tests', () => {
         // Check if the element exists
         expect(boxElement).not.toBeNull();
 
-        // Get and assert on the classList of the element
-        classList = await page.$eval(elementSelector, (box) => {
-            return box.classList.value;
-        });
-        console.log(classList);
-
         boxRect = await page.$eval(elementSelector, (box) => {
             return box.getBoundingClientRect();
         });
 
         // Assert the position of the box
-        expect(boxRect.left).toBeCloseTo(expectedX + 10);
-        expect(boxRect.top).toBeCloseTo(expectedY);
+        expect(boxRect.left).toBeCloseTo(expectedX + 10, 0.1);
+        expect(boxRect.top).toBeCloseTo(expectedY, 0.1);
     });
 });

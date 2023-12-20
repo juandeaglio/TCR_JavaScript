@@ -28,8 +28,8 @@ class HTMLPhysics {
         const components = new Components(vector);
 
         const move = {
-            transform: `translate(${components.x}px, ${components.y}px)`
-
+            transform: `translate(${components.x}px, ${components.y}px)`,
+            transition: 'transform 1s ease'
         };
         return move;
     }
