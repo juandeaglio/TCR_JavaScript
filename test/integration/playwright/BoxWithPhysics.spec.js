@@ -15,12 +15,23 @@ test.describe('Entity controls tests', () => {
         // Perform actions similar to what you did with Jest/Enzyme
         // For instance, click a button that triggers the movement
         // await page.click('selector-for-button');
+        let boxRect = await page.$eval('g[data-testid="Box-1"]', (box) => {
+            return box.getBoundingClientRect();
+        });
 
+
+        // Define the expected X and Y coordinates after the box moves
+        const expectedX = boxRect.left; // Adjust as per your expectation
+        const expectedY = boxRect.top;/* Your expected Y coordinate */
+
+        await page.evaluate(() => {
+            document.querySelector('.move-90').classList.remove('pause-animation');
+        });
         // You can wait for a specific amount of time if needed
         await page.waitForTimeout(1000);
-
         // Query for the element and perform assertions
-        const boxElement = await page.$('[data-testid="Box-1"]');
+        const boxElement = await page.$('g[data-testid="Box-1"]');
+        console.log(boxElement);
         
         // Check if the element exists
         expect(boxElement).not.toBeNull();
@@ -28,16 +39,12 @@ test.describe('Entity controls tests', () => {
         // Get and assert on the classList of the element
         const classList = await boxElement.getAttribute('class');
 
-        const boxRect = await page.$eval('[data-testid="Box-1"]', (box) => {
+        boxRect = await page.$eval('g[data-testid="Box-1"]', (box) => {
             return box.getBoundingClientRect();
         });
 
-        // Define the expected X and Y coordinates after the box moves
-        const expectedX = 522; // Adjust as per your expectation
-        const expectedY = 512;/* Your expected Y coordinate */
-
         // Assert the position of the box
-        //expect(boxRect.left).toBeCloseTo(expectedX);
-        //expect(boxRect.top).toBeCloseTo(expectedY);
+        expect(boxRect.left).toBeCloseTo(expectedX + 10);
+        expect(boxRect.top).toBeCloseTo(expectedY);
     });
 });

@@ -14,7 +14,8 @@ export const usePhysicsStyle = (physics: HTMLPhysics, direction: number) => {
     useEffect(() => {
         const newStyle = physics.createMove(new Vector({ direction: Direction.Right, speed: 10, inDegrees: true }));
         setStyle(newStyle);
-        const movingDirection = 'move-' + parseFloat(Direction.Right.toFixed(3)).toString();
+        let movingDirection = 'move-' + parseFloat(Direction.Right.toFixed(3)).toString();
+        movingDirection += ' pause-animation'
         setMoving(movingDirection);
     }, [physics, direction]);
 
