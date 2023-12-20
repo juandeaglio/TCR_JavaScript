@@ -1,4 +1,5 @@
 # TCR_TypeScript
+This project is inspired by my first fullstack web dev project: [Book Haven, e-commerce book store](https://github.com/juandeaglio/BookStore/). Once I complete this relatively short tangent, I'll go back to working on that.
 ***
 **Commands (as seen in package.json)**:
 test_and_commit: This is my workflow for coding with Test && Commit || Revert. It checks for whether we can build or not, tests the code, and commits if it all succeeds, otherwise it goes back to last successful commit via Git.
