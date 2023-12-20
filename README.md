@@ -32,9 +32,15 @@ I'm trying to build up a system that tracks collisions between HTML elements. I 
 Eventually, it's going to replace the splash screen on [my portfolio](https://juandeaglio.github.io).
 ***
 **The methodology**:
+<ins>Everything is designed with tests in Jest.</ins>
+
 I'm approaching this problem from a test-first perspective. I want to test collisions between html elements, and the reactive directions of travel when one element hits another. An equal and opposite reaction.
 
-I'm writing an integration test which just features a simple App JSX structure. One that seeks to test the existence of collisions and predictable movement of elements. 
+I'm writing component level tests in React Testing Library which integrate between React components & class based JavaScript. I also unit-test those functional components within Jest.
+
+However, testing things on the DOM and trying to find real-world precision of animations & transforms isn't easily possible in React Testing Library, that's where Playwright comes in.
+
+Thankfully all of it is used with Jest.
 ***
 **Where does the movement come from?**
 Unit tests test the inner-workings of how new transforms are generated into CSS, testing the correct angle and magnitude of a 2-d vector.
