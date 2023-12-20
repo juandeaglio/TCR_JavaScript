@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from './Box';
 import Direction from '../../Direction';
-import { usePhysicsStyle } from '../EntityControls/usePhysicsStyle';
+import { usePhysicsStyle } from './usePhysicsStyle';
 import { HTMLPhysics } from '../Physics/HTMLPhysics';
 
 interface BoxWithPhysicsProps {

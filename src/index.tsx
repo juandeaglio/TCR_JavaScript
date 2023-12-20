@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BoxWithPhysics } from './components/Box/BoxWithPhysics';
 import { HTMLPhysics } from './components/Physics/HTMLPhysics'
 import Direction from './Direction';
+import '../test/integration/testStyles.css';
 
 const physics: HTMLPhysics = new HTMLPhysics();
 const MAX_WIDTH: number = 1024;

@@ -31,7 +31,6 @@ describe('Entity controls tests', () => {
         jest.advanceTimersByTime(1000);
 
         const boxElement = queryByTestId(container, 'Box-1');
-
         expect(boxElement.classList.toString()).toContain('move-90');
     })
 
