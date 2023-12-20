@@ -10,7 +10,7 @@
     "build": "webpack --env mode=production",
     "start-server": "webpack serve --config webpack.config.js --env mode=development",
     "test-playwright": "wait-on http://localhost:3000 && playwright test",
-    "test-with-server": "concurrently \"npm run start-server\" \"npm run test-playwright\""
+    "test-with-server": "concurrently --kill-others  \"npm run start-server\" \"npm run test-playwright\""
   },
   "keywords": [],
   "author": "",
