@@ -6,9 +6,12 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # Run Jest tests
 npx jest
+$exitcode_1 = $LASTEXITCODE;
+npm run test-with-server
+$exitcode_2 = $LASTEXITCODE;
 
 # Check if tests passed
-if ($LASTEXITCODE -ne 0) {
+if ($exitcode_1 -ne 0 -and $exitcode_2 -ne 0 ) {
   # Tests failed, reset changes
   git clean -f -d
   git reset --hard
