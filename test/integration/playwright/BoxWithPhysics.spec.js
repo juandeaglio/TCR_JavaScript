@@ -30,6 +30,8 @@ test.describe('Entity controls tests', () => {
         const expectedX = boxRect.left; // Adjust as per your expectation
         const expectedY = boxRect.top;/* Your expected Y coordinate */
 
+        console.log("beforeX move: ", expectedX);
+
         await page.evaluate(() => {
             document.querySelector('.move-90').classList.remove('pause-animation');
         });
@@ -47,7 +49,7 @@ test.describe('Entity controls tests', () => {
         });
 
         // Assert the position of the box
-        expect(boxRect.left).toBeCloseTo(expectedX + 10, 0.1);
+        expect(boxRect.left).toBeCloseTo(expectedX + 10, 0.01);
         expect(boxRect.top).toBeCloseTo(expectedY, 0.1);
     });
 });

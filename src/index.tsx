@@ -10,7 +10,7 @@ const MAX_WIDTH: number = 1024;
 const MAX_HEIGHT: number = 1024;
 
 const TestApp = () => (
-    <svg>
+    <svg width={MAX_WIDTH} height={MAX_HEIGHT}>
         <BoxWithPhysics data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} physics={physics} />
     </svg>
 );
