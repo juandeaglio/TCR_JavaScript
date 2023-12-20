@@ -19,7 +19,7 @@ Playwright scripts:
 
 **test-with-server**: Concurrently executes the start-server and test-playwright (blocks until port 3000 is accessible) scripts.
 ***
-A code example:
+**A code example**:
 
 Let's imagine that in the simplest case we just need an html + tsx file. To use the HTMLPhysics API currently it only works with one pre-defined component that is decorated with BoxWithPhysics, we just inject the physics we want to use and a direction to start with, I also plan on adding a magintude parameter as the speed for which the element moves in is currently constant (10). I intend on generalizing it to any functional component or even just query selected HTML elements.
 
