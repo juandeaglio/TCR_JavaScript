@@ -29,6 +29,7 @@ unit tests:
   image: node:18-alpine
   before_script:
     - npm install
+    - npx playwright install 
   script:
     - npm test
     - npm run test-with-server
