@@ -11,6 +11,7 @@
 # https://hub.docker.com/r/library/node/tags/
 stages:
   - test
+  - playwright-test
   - dockerimage
 
 cache:
@@ -29,9 +30,14 @@ unit tests:
   image: node:18-alpine
   before_script:
     - npm install
-    - npx playwright install 
   script:
     - npm test
+
+
+playwright tests:
+  stage: playwright-test
+  image: mcr.microsoft.com/playwright:v1.40.0-jammy
+  script:
     - npm run test-with-server
 
 
