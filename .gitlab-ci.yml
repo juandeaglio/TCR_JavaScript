@@ -38,6 +38,7 @@ playwright tests:
   stage: playwright-test
   image: mcr.microsoft.com/playwright:v1.40.0-jammy
   script:
+    - chmod +x handle_test_results.sh
     - ./handle_test_results.sh
 
 
