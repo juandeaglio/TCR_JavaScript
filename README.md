@@ -19,6 +19,48 @@ Playwright scripts:
 
 **test-with-server**: Concurrently executes the start-server and test-playwright (blocks until port 3000 is accessible) scripts.
 ***
+A code example:
+
+Let's imagine that in the simplest case we just need an html + tsx file. To use the HTMLPhysics API currently it only works with one pre-defined component that is decorated with BoxWithPhysics, we just inject the physics we want to use and a direction to start with, I also plan on adding a magintude parameter as the speed for which the element moves in is currently constant (10). I intend on generalizing it to any functional component or even just query selected HTML elements.
+
+index.html
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test App</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
+```
+
+index.tsx
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BoxWithPhysics } from './components/Box/BoxWithPhysics';
+import { HTMLPhysics } from './components/Physics/HTMLPhysics'
+import Direction from './Direction';
+
+const physics: HTMLPhysics = new HTMLPhysics();
+const MAX_WIDTH: number = 1024;
+const MAX_HEIGHT: number = 1024;
+
+const TestApp = () => (
+    <svg>
+        <BoxWithPhysics data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} physics={physics} />
+    </svg>
+);
+
+ReactDOM.render(<TestApp />, document.getElementById('root'));
+
+export default {MAX_WIDTH, MAX_HEIGHT};
+```
+
+***
 **Current plans**:
 Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. This is duplicate to the GitLab because I like having the metrics of my commits all on my GitHub (haven't looked into a way which integrates metrics between the two).
 [GitLab Repository](https://gitlab.com/learningtcr/TCR_TypeScript/-/pipelines)
