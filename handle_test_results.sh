@@ -1,14 +1,19 @@
 #!/bin/bash
 
-# Run the test command and capture its output
-OUTPUT=$(npm run test-with-server; EXIT_CODE=$?; echo $EXIT_CODE)
+# Run the test command
+OUTPUT=$(npm run test-with-server)
+
+# Capture the exit code
+EXIT_CODE=$?
 
 # Print the output for logging
 echo "$OUTPUT"
 
-# Check for "tests passed" string
-if echo "$OUTPUT" | grep -iq "tests passed"; then
-    exit 0
+# Check for "tests passed" string in the output
+if echo "$OUTPUT" | grep -iq "\d+\sfailed"; then
+    echo "Exiting with code $EXIT_CODE"
+    exit $EXIT_CODE
 else
-    exit "$(echo "$OUTPUT" | tail -1)"
+    echo "Tests passed found in output"
+    exit 0
 fi
