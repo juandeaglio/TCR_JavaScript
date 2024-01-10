@@ -65,13 +65,15 @@ export default {MAX_WIDTH, MAX_HEIGHT};
 Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. This is duplicate to the GitLab because I like having the metrics of my commits all on my GitHub (haven't looked into a way which integrates metrics between the two).
 [GitLab Repository](https://gitlab.com/learningtcr/TCR_TypeScript/-/pipelines)
 
-Slowly building up the code for this as of 12/19/2023.
+Slowly building up the code for this as of 1/10/2024.
 
 I'm going to re-name this project to HTML Physics. It's physics with HTML and CSS!
 
 I'm trying to build up a system that tracks collisions between HTML elements. I want things to bounce off each other in a pretty, abstract manner.
 
 Eventually, it's going to replace the splash screen on [my portfolio](https://juandeaglio.github.io).
+
+I also want to simplify the code from the simplest use case so that we interact with HTML elements / React components with a builder pattern, slowly changing the object with function calls rather than one huge constructor and to create a higher abstraction which creates the entire environment and generates boxes as needed for testing purposes.
 ***
 **The methodology**:
 <ins>Everything is designed with tests in Jest.</ins>
