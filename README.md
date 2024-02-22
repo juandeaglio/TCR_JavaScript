@@ -29,24 +29,18 @@ index.html
 ```
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Test App</title>
-</head>
-<body>
-    <div id="root"></div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Test App</title>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
 </html>
 ```
 
 index.tsx
 ```
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BoxWithPhysics } from './components/Box/BoxWithPhysics';
-import { HTMLPhysics } from './components/Physics/HTMLPhysics'
-import Direction from './Direction';
-
 const physics: HTMLPhysics = new HTMLPhysics();
 const MAX_WIDTH: number = 1024;
 const MAX_HEIGHT: number = 1024;
@@ -58,8 +52,6 @@ const TestApp = () => (
 );
 
 ReactDOM.render(<TestApp />, document.getElementById('root'));
-
-export default {MAX_WIDTH, MAX_HEIGHT};
 ```
 
 ***
