@@ -1,20 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BoxWithPhysics } from './components/Box/BoxWithPhysics';
-import { HTMLPhysics } from './components/Physics/HTMLPhysics'
-import Direction from './Direction';
-import '../test/integration/testStyles.css';
+import {createRoot} from 'react-dom/client';
 
-const physics: HTMLPhysics = new HTMLPhysics();
 const MAX_WIDTH: number = 1024;
 const MAX_HEIGHT: number = 1024;
 
-const TestApp = () => (
-    <svg width={MAX_WIDTH} height={MAX_HEIGHT}>
-        <BoxWithPhysics data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} physics={physics} />
-    </svg>
+const ProdApp = () => (
+    <div>
+        Hello, World!
+    </div>
 );
 
-ReactDOM.render(<TestApp />, document.getElementById('root'));
+const domNode = document.getElementById('root');
+const root = createRoot(domNode);
+root.render(<ProdApp />);
 
 export default {MAX_WIDTH, MAX_HEIGHT};

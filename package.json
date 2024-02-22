@@ -6,9 +6,9 @@
   "scripts": {
     "test_and_commit": "@powershell ./test_or_revert.ps1",
     "test": "jest",
-    "start": "webpack serve --env mode=development",
+    "start": "webpack serve --config=webpack.prod.config.js",
     "build": "webpack --env mode=production",
-    "test-start-server": "webpack serve --config webpack.dev.config.js",
+    "test-start-server": "webpack serve --env mode=development",
     "test-playwright": "wait-on http://localhost:3000 && playwright test",
     "test-with-server": "concurrently --kill-others  \"npm run test-start-server\" \"npm run test-playwright\""
   },
@@ -46,6 +46,7 @@
     "typescript": "^5.2.2",
     "wait-on": "^7.2.0",
     "webpack": "^5.89.0",
+    "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   }

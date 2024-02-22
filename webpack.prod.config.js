@@ -1,8 +1,12 @@
-const path = require('path');
 const { merge } = require('webpack-merge');
-const commonConfig = require('./webpack.common.config'); // Adjust this path if necessary
+const commonConfig = require('./webpack.common.config');
 
 module.exports = merge(commonConfig, {
     mode: 'production',
-    devtool: 'source-map',
+    devtool: false,
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
 });
