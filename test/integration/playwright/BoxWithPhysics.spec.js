@@ -8,15 +8,11 @@ const elementSelector = '[data-testid="Box-1"]';
 test.describe('Entity controls tests', () => {
     test('Test move a Box to the right', async ({ page }) => {
         // Navigate to the page where your component is rendered
-        // Replace YOUR_COMPONENT_URL with the actual URL
         await page.goto('http://localhost:3000');
 
         // Optionally, you can set the viewport size if necessary
         await page.setViewportSize({ width: MAX_WIDTH, height: MAX_HEIGHT });
 
-        // Perform actions similar to what you did with Jest/Enzyme
-        // For instance, click a button that triggers the movement
-        // await page.click('selector-for-button');
         let boxRect = await page.$eval(elementSelector, (box) => {
             return box.getBoundingClientRect();
         });
@@ -30,8 +26,6 @@ test.describe('Entity controls tests', () => {
         const expectedX = boxRect.left; // Adjust as per your expectation
         const expectedY = boxRect.top;/* Your expected Y coordinate */
 
-        console.log("beforeX move: ", expectedX);
-
         await page.evaluate(() => {
             document.querySelector('.move-90').classList.remove('pause-animation');
         });
@@ -41,8 +35,6 @@ test.describe('Entity controls tests', () => {
         boxElement = await page.$eval(elementSelector, (box) =>{
             return box;
         });
-        // Check if the element exists
-        expect(boxElement).not.toBeNull();
 
         boxRect = await page.$eval(elementSelector, (box) => {
             return box.getBoundingClientRect();
