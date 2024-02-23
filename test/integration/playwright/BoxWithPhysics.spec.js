@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import '../../toBeCloseTo';
-import { TestSimulation } from './TestSimulation'
+import { TestSimulation } from '../../../src/systems/TestSimulation'
 
 const MAX_HEIGHT = 1024;
 const MAX_WIDTH = 1024;
