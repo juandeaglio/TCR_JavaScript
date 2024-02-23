@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import '../../toBeCloseTo';
+import { TestSimulation } from './TestSimulation'
 
 const MAX_HEIGHT = 1024;
 const MAX_WIDTH = 1024;
@@ -24,11 +25,13 @@ test.describe('Entity controls tests', () => {
         const expectedY = boxRect.top;
 
         await page.evaluate(() => {
-            document.querySelector('.move-90').classList.remove('pause-animation'); // not great
+            // Simulator.unpause()
+
+            document.querySelectorAll('.move-90')[0].classList.remove('pause-animation');
         });
 
         await page.waitForTimeout(1000);
-
+        // Simulator.pause()
         boxElement = await page.$eval(elementSelector, (box) =>{
             return box;
         });
