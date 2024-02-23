@@ -18,8 +18,10 @@ interface Style {
 
 export const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = ({ direction, windowWidth, windowHeight, physics, ...otherProps }) => {
     const styleAndMove: [Style, string] = usePhysicsStyle(physics, direction);
+    const style = styleAndMove[0];
+    const className = styleAndMove[1];
 
     return (
-        <Box className={styleAndMove[1]} style={styleAndMove[0]} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
+        <Box className={className} style={style} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
     );
 };

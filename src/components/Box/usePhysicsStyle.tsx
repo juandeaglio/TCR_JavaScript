@@ -15,7 +15,7 @@ export const usePhysicsStyle = (physics: HTMLPhysics, direction: number): [Style
         const newStyle = physics.createMove(new Vector({ direction: Direction.Right, speed: 10, inDegrees: true }));
         setStyle(newStyle);
         let movingDirection = 'move-' + parseFloat(Direction.Right.toFixed(3)).toString();
-        movingDirection += ' pause-animation'
+        movingDirection += ' pause-animation'; // our shapes pause by default
         setMoving(movingDirection);
     }, [physics, direction]);
 
