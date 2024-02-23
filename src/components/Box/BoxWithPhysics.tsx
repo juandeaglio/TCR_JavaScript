@@ -11,12 +11,15 @@ interface BoxWithPhysicsProps {
     physics: HTMLPhysics;
 }
 
+
+interface Style {
+    transform?: string;
+}
+
 export const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = ({ direction, windowWidth, windowHeight, physics, ...otherProps }) => {
-    const styleAndClassname = usePhysicsStyle(physics, direction); // physics needs to be in scope
-    const style = styleAndClassname[0];
-    const move = styleAndClassname[1];
+    const styleAndMove: [Style, string] = usePhysicsStyle(physics, direction);
 
     return (
-        <Box className={move} style={style} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
+        <Box className={styleAndMove[1]} style={styleAndMove[0]} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
     );
 };

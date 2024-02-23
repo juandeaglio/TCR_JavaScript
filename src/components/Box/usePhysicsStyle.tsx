@@ -7,7 +7,7 @@ interface Style {
     transform?: string;
 }
 
-export const usePhysicsStyle = (physics: HTMLPhysics, direction: number) => {
+export const usePhysicsStyle = (physics: HTMLPhysics, direction: number): [Style, string] => {
     const [style, setStyle] = useState<Style>({});
     const [move, setMoving] = useState<string>();
 

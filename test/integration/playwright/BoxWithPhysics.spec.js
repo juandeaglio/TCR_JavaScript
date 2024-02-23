@@ -7,10 +7,8 @@ const MAX_WIDTH = 1024;
 const elementSelector = '[data-testid="Box-1"]';
 test.describe('Entity controls tests', () => {
     test('Test move a Box to the right', async ({ page }) => {
-        // Navigate to the page where your component is rendered
         await page.goto('http://localhost:3000');
 
-        // Optionally, you can set the viewport size if necessary
         await page.setViewportSize({ width: MAX_WIDTH, height: MAX_HEIGHT });
 
         let boxRect = await page.$eval(elementSelector, (box) => {
@@ -22,16 +20,15 @@ test.describe('Entity controls tests', () => {
             return box;
         });
 
-        // Define the expected X and Y coordinates after the box moves
-        const expectedX = boxRect.left; // Adjust as per your expectation
-        const expectedY = boxRect.top;/* Your expected Y coordinate */
+        const expectedX = boxRect.left;
+        const expectedY = boxRect.top;
 
         await page.evaluate(() => {
-            document.querySelector('.move-90').classList.remove('pause-animation');
+            document.querySelector('.move-90').classList.remove('pause-animation'); // not great
         });
-        // You can wait for a specific amount of time if needed
+
         await page.waitForTimeout(1000);
-        // Query for the element and perform assertions
+
         boxElement = await page.$eval(elementSelector, (box) =>{
             return box;
         });
