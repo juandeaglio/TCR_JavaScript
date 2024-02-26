@@ -16,11 +16,6 @@ test.describe('Entity controls tests', () => {
             return box.getBoundingClientRect();
         });
 
-
-        let boxElement = await page.$eval(elementSelector, (box) =>{
-            return box;
-        });
-
         const expectedX = boxRect.left;
         const expectedY = boxRect.top;
 
@@ -30,11 +25,7 @@ test.describe('Entity controls tests', () => {
         await page.waitForTimeout(1000);
 
         pause(elements);
-       
-        boxElement = await page.$eval(elementSelector, (box) =>{
-            return box;
-        });
-
+        
         boxRect = await page.$eval(elementSelector, (box) => {
             return box.getBoundingClientRect();
         });
