@@ -23,18 +23,12 @@ test.describe('Entity controls tests', () => {
 
         const expectedX = boxRect.left;
         const expectedY = boxRect.top;
-        /*
-        await page.evaluate(() => {
-            // Simulator.unpause()
 
-            document.querySelectorAll('.move-90')[0].classList.remove('pause-animation');
-        });
-        */
         const elements = await page.$$('.moveable');
         unpause(elements);
 
         await page.waitForTimeout(1000);
-        
+
         pause(elements);
        
         boxElement = await page.$eval(elementSelector, (box) =>{
