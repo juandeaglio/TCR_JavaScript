@@ -9,6 +9,7 @@ interface BoxWithPhysicsProps {
     windowWidth: number;
     windowHeight: number;
     physics: HTMLPhysics;
+    [x: string | number | symbol]: unknown;
 }
 
 
@@ -16,6 +17,7 @@ interface Style {
     transform?: string;
 }
 
+// Higher order component that decorates box with calculated physics styles.
 export const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = ({ direction, windowWidth, windowHeight, physics, ...otherProps }) => {
     const styleAndMove: [Style, string] = usePhysicsStyle(physics, direction);
     const style = styleAndMove[0];

@@ -1,19 +1,14 @@
 import React from 'react';
 
 interface BoxProps {
-  windowWidth: number;
-  windowHeight: number;
   children?: React.ReactNode;
-  [key: string]: any;
+  [x: string | number | symbol]: unknown;
 }
 
-const Box: React.FC<BoxProps> = ({windowWidth, windowHeight, children, ...otherProps}) => {
-  const centerX = windowWidth / 2;
-  const centerY = windowHeight / 2;
-
+const Box: React.FC<BoxProps> = ({children, ...otherProps}) => {
   return(
-    <g role='box' x={centerX} y={centerY} data-collision-count={0} {...otherProps}>
-      <rect width={100} height={100} fill='red' />
+    <g role='box' data-collision-count={0} {...otherProps}>
+      <rect width={100} height={100} fill='red' style={{position: 'absolute'}}/>
       {children}
     </g>
   );

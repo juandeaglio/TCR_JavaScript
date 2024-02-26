@@ -33,7 +33,7 @@ const TestApp: React.FC<TestAppProps> = ({ direction, collisionSystem, screenWid
         <div>
             {CollisionSystem && <CollisionSystem />}
             <svg width={screenWidth} height={screenHeight}>
-                <Box {...boxProps} />
+                <Box x={screenWidth/2} y={screenHeight/2} {...boxProps} />
             </svg>
         </div>
     );

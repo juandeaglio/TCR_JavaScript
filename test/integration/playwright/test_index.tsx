@@ -6,10 +6,12 @@ import { HTMLPhysics } from '../../../src/components/Physics/HTMLPhysics'
 import Direction from '../../../src/Direction';
 import './testStyles.css'
 import TestApp2 from './test_index2'
+import './default_test_sizes'
+import { TEST_WINDOW_HEIGHT, TEST_WINDOW_WIDTH } from './default_test_sizes';
 
 const physics: HTMLPhysics = new HTMLPhysics();
-const MAX_WIDTH: number = 1024;
-const MAX_HEIGHT: number = 1024;
+const MAX_WIDTH: number = TEST_WINDOW_WIDTH;
+const MAX_HEIGHT: number = TEST_WINDOW_HEIGHT;
 
 const TestApp = () => (
     <div>
