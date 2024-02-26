@@ -8,6 +8,7 @@ module.exports = merge(commonConfig, {
     devServer: {
         static: path.join(__dirname, 'dist'),
         port: 3000,
+        historyApiFallback: true,
     },
     entry: './test/integration/playwright/test_index.tsx',
 });
