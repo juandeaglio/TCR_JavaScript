@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import '../../toBeCloseTo';
-import { TestSimulation } from '../../../src/systems/TestSimulation'
+import { unpause, pause, getAllMoveables } from '../../../src/systems/TestSimulation';
 
 const MAX_HEIGHT = 1024;
 const MAX_WIDTH = 1024;
@@ -23,15 +23,20 @@ test.describe('Entity controls tests', () => {
 
         const expectedX = boxRect.left;
         const expectedY = boxRect.top;
-
+        /*
         await page.evaluate(() => {
             // Simulator.unpause()
 
             document.querySelectorAll('.move-90')[0].classList.remove('pause-animation');
         });
+        */
+        const elements = await page.$$('.moveable');
+        unpause(elements);
 
         await page.waitForTimeout(1000);
-        // Simulator.pause()
+        
+        pause(elements);
+       
         boxElement = await page.$eval(elementSelector, (box) =>{
             return box;
         });
