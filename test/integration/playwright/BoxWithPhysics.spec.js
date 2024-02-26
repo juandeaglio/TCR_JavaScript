@@ -8,7 +8,7 @@ const MAX_WIDTH = 1024;
 const elementSelector = '[data-testid="Box-1"]';
 test.describe('Entity controls tests', () => {
     test('Test move a Box to the right', async ({ page }) => {
-        await page.goto('http://localhost:3000/test1/');
+        await page.goto('http://localhost:3000/');
 
         await page.setViewportSize({ width: MAX_WIDTH, height: MAX_HEIGHT });
 
