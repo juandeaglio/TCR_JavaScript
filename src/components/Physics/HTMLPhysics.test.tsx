@@ -2,6 +2,7 @@ import React from 'react';
 import {HTMLPhysics, Components} from './HTMLPhysics';
 import Vector from './Vector';
 import Direction from '../../Direction';
+import Pair from '../../Pair'
 
 describe('HTMLPhysics tests', () => {
     let physics: HTMLPhysics;
@@ -15,11 +16,13 @@ describe('HTMLPhysics tests', () => {
     });
 
     test('Move a box to the right', () => {
-        const createdStyle = physics.createMove(new Vector({direction: Direction.Right, speed: 10, inDegrees: true}));
-        const actualStyle: React.CSSProperties = {
-            transform: 'translate(10px, 0px)',
-        };
-        expect(createdStyle.transform).toEqual(actualStyle.transform);
+        const initialPosition: Pair = new Pair(0, 0);
+        const createdStyle = physics.createStyle(initialPosition, new Vector({direction: Direction.Right, speed: 10, inDegrees: true}));
+        const actualStyle: string = `
+            transform: translate(10px, 0px),
+            transition: transform 1s ease
+        `
+        expect(createdStyle).toEqual(actualStyle);
     });
 
     test('Move a box upwards', () => {
@@ -73,4 +76,17 @@ describe('HTMLPhysics tests', () => {
         expect(amalgamatedDirection.speed).toBeCloseTo(Math.sqrt(Math.pow(-1,2) + Math.pow(0.95, 2)));
         expect(amalgamatedDirection.direction * 180 / Math.PI).toBeCloseTo(313.5311993);
     });
+
+    
+    test('Move an offset box to the right', () => {
+        const vector: Vector = new Vector({direction: Direction.Right, speed: 10, inDegrees: true})
+        const initialPosition: Pair = new Pair(100, 100);
+        const createdStyle = physics.createStyle(initialPosition, vector);
+        const actualStyle: string = `
+            transform: translate(110px, 100px),
+            transition: transform 1s ease
+        `
+        expect(createdStyle).toEqual(actualStyle);
+    });
+
 });

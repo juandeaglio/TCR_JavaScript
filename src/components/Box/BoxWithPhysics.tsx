@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from './Box';
 import Direction from '../../Direction';
-import { usePhysicsStyle } from './usePhysicsStyle';
+import { decorateAsMoveable } from './usePhysicsStyle';
 import { HTMLPhysics } from '../Physics/HTMLPhysics';
 
 interface BoxWithPhysicsProps {
@@ -19,11 +19,9 @@ interface Style {
 
 // Higher order component that decorates box with calculated physics styles.
 export const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = ({ direction, windowWidth, windowHeight, physics, ...otherProps }) => {
-    const styleAndMove: [Style, string] = usePhysicsStyle(physics, direction);
-    const style = styleAndMove[0];
-    const className = styleAndMove[1];
+    const classNames: string = decorateAsMoveable();
 
     return (
-        <Box className={className} style={style} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
+        <Box className={classNames} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
     );
 };

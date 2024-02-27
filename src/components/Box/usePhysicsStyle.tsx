@@ -7,17 +7,15 @@ interface Style {
     transform?: string;
 }
 
-export const usePhysicsStyle = (physics: HTMLPhysics, direction: number): [Style, string] => {
-    const [style, setStyle] = useState<Style>({});
-    const [move, setMoving] = useState<string>();
+export const decorateAsMoveable = (): string => {
+    const [classNames, setClassNames] = useState<string>();
 
     useEffect(() => {
-        const newStyle = physics.createMove(new Vector({ direction: Direction.Right, speed: 10, inDegrees: true }));
-        setStyle(newStyle);
         let movingDirection = 'move-' + parseFloat(Direction.Right.toFixed(3)).toString();
         movingDirection += ' pause-animation'; // our shapes pause by default
-        setMoving(movingDirection);
-    }, [physics, direction]);
+        movingDirection += ' moveable'; // decorates HTML element with a moveable classname
+        setClassNames(movingDirection);
+    });
 
-    return [style, move];
+    return classNames;
 };

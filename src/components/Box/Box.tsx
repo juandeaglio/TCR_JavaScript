@@ -7,10 +7,10 @@ interface BoxProps {
 
 const Box: React.FC<BoxProps> = ({children, ...otherProps}) => {
   return(
-    <g role='box' data-collision-count={0} {...otherProps}>
+    <svg role='box' data-collision-count={0} {...otherProps}>
       <rect width={100} height={100} fill='red' style={{position: 'absolute'}}/>
       {children}
-    </g>
+    </svg>
   );
 };
 

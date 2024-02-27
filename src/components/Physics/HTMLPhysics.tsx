@@ -1,6 +1,9 @@
 import React from 'react';
 import Vector from './Vector';
 import Components from './Components';
+import Pair from '../../Pair';
+
+
 class HTMLPhysics {
     generateVectorFromVectors(directions: Array<Vector>): Vector {
         let summedComponents = new Components(new Vector());
@@ -24,14 +27,16 @@ class HTMLPhysics {
         return new Components(vector);
     }
 
-    createMove(vector: Vector): React.CSSProperties {
-        const components = new Components(vector);
-
-        const move = {
-            transform: `translate(${components.x}px, ${components.y}px)`,
-            transition: 'transform 1s ease'
-        };
-        return move;
+    createStyle(initial: Pair, vector: Vector): string {
+        const absolute_components = new Components(vector);
+        let relative_components = absolute_components;
+        relative_components.x += initial.x
+        relative_components.y += initial.y
+        const style = `
+            transform: translate(${relative_components.x}px, ${relative_components.y}px),
+            transition: transform 1s ease
+        `;
+        return style;
     }
 }
 
