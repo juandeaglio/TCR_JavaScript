@@ -27,12 +27,12 @@ class HTMLPhysics {
         return new Components(vector);
     }
 
-    createKeyframes(initial: Pair, vector: Vector): Array<Object> {
+    createKeyframes(initial: Pair, vector: Vector): Array<Keyframe> {
         const absolute_components = new Components(vector);
         let relative_components = absolute_components;
         relative_components.x += initial.x
         relative_components.y += initial.y
-        const style: Array<Object> = [
+        const style: Array<Keyframe> = [
             {
                 transform: `translate(${initial.x}px, ${initial.y}px)`,
             },
