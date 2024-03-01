@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 
 interface BoxProps {
   children?: React.ReactNode;
   [x: string | number | symbol]: unknown;
 }
 
-const Box: React.FC<BoxProps> = ({children, ...otherProps}) => {
+const Box: React.FC<BoxProps> = forwardRef((props, ref) => {
   return(
-    <svg role='box' data-collision-count={0} {...otherProps}>
+    <svg role='box' data-collision-count={0} {...props} ref={ref as React.MutableRefObject<null>}>
       <rect width={100} height={100} fill='red' style={{position: 'absolute'}}/>
-      {children}
+      {props.children}
     </svg>
   );
-};
+});
 
 export default Box;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { BoxWithPhysics } from '../../../src/components/Box/BoxWithPhysics'
@@ -8,21 +8,43 @@ import './testStyles.css'
 import TestApp2 from './test_index2'
 import './default_test_sizes'
 import { TEST_WINDOW_HEIGHT, TEST_WINDOW_WIDTH } from './default_test_sizes';
+import { unpause, pause } from '../../../src/systems/TestSimulation'; // Adjust the path as needed
+import EntityControls from '../../../src/components/EntityControls/EntityControls';
+import { findDOMNode } from 'react-dom';
 
 const physics: HTMLPhysics = new HTMLPhysics();
 const MAX_WIDTH: number = TEST_WINDOW_WIDTH;
 const MAX_HEIGHT: number = TEST_WINDOW_HEIGHT;
 
-const TestApp = () => (
+
+const TestApp = () => {
+    const moveables = document.getElementsByClassName("moveable");
+    const entityControls: EntityControls = new EntityControls(physics);
+    const elRef = useRef<Element>(null);
+
+    useEffect(() =>
+    {   
+        entityControls.move(elRef.current as Element, Direction.Right);
+    }, [])
+    function handleUnpauseClick(){
+        unpause(moveables);
+    };
+    
+    function handlePauseClick(){
+        pause(moveables);
+    };
+
+  
+
+    return(
     <div>
+        <button id="unpause"onClick={handleUnpauseClick}>Unpause</button>
+        <button id="pause" onClick={handlePauseClick}> Pause </button>
         <svg width={MAX_WIDTH} height={MAX_HEIGHT}>
-            <BoxWithPhysics data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} physics={physics} />
+            <BoxWithPhysics id="Box-1" data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} physics={physics} x={0} y={0} ref={elRef}> </BoxWithPhysics>
         </svg>
-    </div>
-);
-
-// ReactDOM.render(<TestApp />, document.getElementById('root'));
-
+    </div>)
+}
 
 const router = createBrowserRouter([
     {

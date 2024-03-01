@@ -42,22 +42,6 @@ describe('Entity controls tests', () => {
         expectMoveable(boxElement);
     })
 
-    test('Animate Box', () => {
-        const box = <TestApp />;
-        const container = document.createElement('div');
-
-        const root = createRoot(container);
-        act(() => root.render(box));
-        const physics = new HTMLPhysics();
-        const controller = new EntityControls(physics);
-        const boxElement = document.querySelector('[data-testid=Box-1]')
-        controller.move(boxElement, Direction.Right);
-        jest.advanceTimersByTime(1000);
-        
-        const actualElement: HTMLElement = getByTestId(container, 'Box-1');
-        expect(actualElement).toContain(`transform: translate(`)
-    })
-
     afterEach(() => {
         jest.runOnlyPendingTimers();
         jest.useRealTimers();

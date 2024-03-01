@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import Box from './Box';
 import Direction from '../../Direction';
 import { decorateAsMoveable } from './usePhysicsStyle';
@@ -18,10 +18,10 @@ interface Style {
 }
 
 // Higher order component that decorates box with calculated physics styles.
-export const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = ({ direction, windowWidth, windowHeight, physics, ...otherProps }) => {
+export const BoxWithPhysics: React.FC<BoxWithPhysicsProps> = forwardRef((props, ref) => {
     const classNames: string = decorateAsMoveable();
 
     return (
-        <Box className={classNames} windowWidth={windowWidth} windowHeight={windowHeight} {...otherProps} />
+        <Box className={classNames} {...props} ref={ref} />
     );
-};
+});

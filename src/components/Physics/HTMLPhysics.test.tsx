@@ -17,12 +17,22 @@ describe('HTMLPhysics tests', () => {
 
     test('Move a box to the right', () => {
         const initialPosition: Pair = new Pair(0, 0);
-        const createdStyle = physics.createStyle(initialPosition, new Vector({direction: Direction.Right, speed: 10, inDegrees: true}));
-        const actualStyle: string = `
-            transform: translate(10px, 0px),
-            transition: transform 1s ease
-        `
-        expect(createdStyle).toEqual(actualStyle);
+        const keyframes = physics.createKeyframes(initialPosition, new Vector({direction: Direction.Right, speed: 10, inDegrees: true}));
+        const expectedKeyframes: Array<Object> = [
+            {
+                transform: "translate(0px, 0px)"
+            },
+            {
+                transform: "translate(10px, 0px)"
+            }
+        ];
+        expect(keyframes).toEqual(expectedKeyframes);
+    });
+
+    test('Frictionless physics', () => {
+        const friction = physics.createFriction(NaN, NaN, 1000);
+        const expectedFriction: Object =  {duration: 1000, iterations: 1, fill: "forwards", easing: "linear"};
+        expect(expectedFriction).toEqual(friction);
     });
 
     test('Move a box upwards', () => {
@@ -81,11 +91,15 @@ describe('HTMLPhysics tests', () => {
     test('Move an offset box to the right', () => {
         const vector: Vector = new Vector({direction: Direction.Right, speed: 10, inDegrees: true})
         const initialPosition: Pair = new Pair(100, 100);
-        const createdStyle = physics.createStyle(initialPosition, vector);
-        const actualStyle: string = `
-            transform: translate(110px, 100px),
-            transition: transform 1s ease
-        `
+        const createdStyle = physics.createKeyframes(initialPosition, vector);
+        const actualStyle: Array<Object> = [
+            {
+                transform: "translate(100px, 100px)",
+            },
+            {
+                transform: "translate(110px, 100px)",
+            }
+        ];
         expect(createdStyle).toEqual(actualStyle);
     });
 

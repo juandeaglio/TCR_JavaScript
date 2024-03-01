@@ -27,16 +27,25 @@ class HTMLPhysics {
         return new Components(vector);
     }
 
-    createStyle(initial: Pair, vector: Vector): string {
+    createKeyframes(initial: Pair, vector: Vector): Array<Object> {
         const absolute_components = new Components(vector);
         let relative_components = absolute_components;
         relative_components.x += initial.x
         relative_components.y += initial.y
-        const style = `
-            transform: translate(${relative_components.x}px, ${relative_components.y}px),
-            transition: transform 1s ease
-        `;
+        const style: Array<Object> = [
+            {
+                transform: `translate(${initial.x}px, ${initial.y}px)`,
+            },
+            {
+                transform: `translate(${relative_components.x}px, ${relative_components.y}px)`,
+            }
+        ];
         return style;
+    }
+
+    createFriction(speed?: number, distance?: number, time?: number): Object {
+        const animation_time = time || (distance/speed);
+        return {duration: animation_time, iterations: 1, fill: "forwards", easing: "linear"};
     }
 }
 
