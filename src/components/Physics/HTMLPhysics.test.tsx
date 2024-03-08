@@ -91,8 +91,8 @@ describe('HTMLPhysics tests', () => {
     test('Move an offset box to the right', () => {
         const vector: Vector = new Vector({direction: Direction.Right, speed: 10, inDegrees: true})
         const initialPosition: Pair = new Pair(100, 100);
-        const createdStyle = physics.createKeyframes(initialPosition, vector);
-        const actualStyle: Array<Object> = [
+        const createdStyle: Array<Keyframe> = physics.createKeyframes(initialPosition, vector);
+        const actualStyle: Array<Keyframe> = [
             {
                 transform: "translate(100px, 100px)",
             },

@@ -3,7 +3,7 @@ import { BoxWithPhysics } from '../../../src/components/Box/BoxWithPhysics'
 import { HTMLPhysics } from '../../../src/components/Physics/HTMLPhysics'
 import Direction from '../../../src/Direction';
 import './testStyles.css'
-import { COLLISTION_TEST_GAP, DEFAULT_BOX_WIDTH, TEST_WINDOW_HEIGHT, TEST_WINDOW_WIDTH } from './default_test_sizes';
+import { COLLISTION_TEST_GAP, DEFAULT_BOX_WIDTH, TEST_WINDOW_HEIGHT, TEST_WINDOW_WIDTH } from './defaultTestSizes';
 
 
 const physics: HTMLPhysics = new HTMLPhysics();

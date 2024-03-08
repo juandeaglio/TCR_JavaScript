@@ -16,7 +16,7 @@ class EntityControls
         const initial_element_position: Pair = new Pair(parseInt(element.getAttribute('x')), parseInt(element.getAttribute('y')));
         const keyframes: Array<Keyframe> = this.physicsEngine.createKeyframes(initial_element_position, new Vector({speed: 10, direction: direction}));
         
-        const animation = element.animate(keyframes, this.physicsEngine.createFriction());
+        const animation = element.animate(keyframes, this.physicsEngine.createFriction(NaN, NaN, 10));
         return animation;
     }
 }

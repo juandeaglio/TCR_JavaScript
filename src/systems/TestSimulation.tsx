@@ -1,18 +1,30 @@
-export function unpause(elements: HTMLCollectionOf<Element>): void
+export function unpause(elements: HTMLCollectionOf<Element> | Element): void
 {
-    const element_array: Element[] = Array.from(elements);
-    element_array.forEach((element) =>
+    if (elements instanceof HTMLCollection )
     {
-        element.classList.remove("pause-animation");
-    });
+        const element_array: Element[] = Array.from(elements);
+        element_array.forEach((element) =>
+        {
+            element.classList.remove("pause-animation");
+        });
+    }
+    else if (elements instanceof Element){
+        elements.classList.remove("pause-animation")
+    }
 }
-export function pause(elements: HTMLCollectionOf<Element>): void
+export function pause(elements: HTMLCollectionOf<Element> | Element): void
 {
-    const element_array: Element[] = Array.from(elements);
-    element_array.forEach((element) =>
+    if (elements instanceof HTMLCollection )
     {
-        element.classList.add("pause-animation");
-    });
+        const element_array: Element[] = Array.from(elements);
+        element_array.forEach((element) =>
+        {
+            element.classList.add("pause-animation");
+        });
+    }
+    else if (elements instanceof Element){
+        elements.classList.add("pause-animation")
+    }
 }
 
 export function getAllPaused(document: HTMLElement): HTMLCollectionOf<Element>

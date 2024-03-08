@@ -38,8 +38,8 @@ const TestApp = () => {
 
     return(
     <div>
-        <button id="unpause"onClick={handleUnpauseClick}>Unpause</button>
-        <button id="pause" onClick={handlePauseClick}> Pause </button>
+        <button role="button" id="unpause"onClick={handleUnpauseClick}>Unpause</button>
+        <button role="button" id="pause" onClick={handlePauseClick}> Pause </button>
         <svg width={MAX_WIDTH} height={MAX_HEIGHT}>
             <BoxWithPhysics id="Box-1" data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} physics={physics} x={0} y={0} ref={elRef}> </BoxWithPhysics>
         </svg>
@@ -65,4 +65,4 @@ root.render(
 );
 
 
-export default {MAX_WIDTH, MAX_HEIGHT};
+export default {MAX_WIDTH, MAX_HEIGHT, TestApp};
