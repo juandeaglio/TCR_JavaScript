@@ -1,38 +1,21 @@
 // @ts-check
-
-import { test, expect } from '@playwright/experimental-ct-react'
-import '../../toBeCloseTo';
-import { unpause, pause } from '../../../src/systems/TestSimulation';
-import { COLLISTION_TEST_GAP, DEFAULT_BOX_WIDTH, TEST_WINDOW_HEIGHT, TEST_WINDOW_WIDTH } from './defaultTestSizes';
+import React from 'react';
 import TestApp from './testApp';
+import { test, expect } from '@playwright/experimental-ct-react';
 
 
-const MAX_HEIGHT = TEST_WINDOW_HEIGHT;
-const MAX_WIDTH = TEST_WINDOW_WIDTH;
-
-/*test.describe('Entity controls tests', () => {
-    test('Test move a Box to the right', async ({ page }) => {
-        page.locator(".moveable")
-        await page.goto('http://localhost:3000/');
-
-        await page.setViewportSize({ width: MAX_WIDTH, height: MAX_HEIGHT });
-
-        const expectedX = (await page.evaluate(() => { return document.querySelector(".moveable")?.getBoundingClientRect().left } ) || 0);
-        await page.getByLabel('unpause').click();
-
-
-        await page.waitForTimeout(1000);
-
-        await page.getByRole("button", {name: 'pause'}).filter({hasNotText: 'unpause'}).click();
-
-        let boxRect = (await page.evaluate(() => { return document.querySelector(".moveable")?.getBoundingClientRect() } ));
-
-
-        // Assert the position of the box
-        expect(boxRect.left).toBeCloseTo(expectedX+10, 0.5);
-    });
-
-});*/
-test("Move a Box to the right", async({ mount }) => {
+test("Move a Box to the right", async({ mount, page }) => {
     const component = await mount(<TestApp />);
+    await expect(component).toContainText("Pause");
+    const expectedX = (await page.evaluate(() => { return document.querySelector(".moveable")?.getBoundingClientRect().left } ) || 0);
+    await component.getByRole("button", {name: /Unpause/i}).click();
+
+    await page.waitForTimeout(1000);
+
+    await component.locator("#pause").click();
+
+    let boxRect = (await component.evaluate(() => { return document.querySelector(".moveable")?.getBoundingClientRect() } ));
+
+    // Assert the position of the box
+    expect(boxRect.left).toBeCloseTo(expectedX+10, 0.5);
 });

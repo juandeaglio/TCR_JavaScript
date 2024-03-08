@@ -28,7 +28,6 @@
     "@babel/preset-react": "^7.23.3",
     "@cfaester/enzyme-adapter-react-18": "^0.7.1",
     "@playwright/experimental-ct-react": "^1.42.1",
-    "@playwright/test": "^1.40.1",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.0",
     "@types/enzyme": "^3.10.16",
