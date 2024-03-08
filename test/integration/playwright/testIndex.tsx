@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './testStyles.css';
 import TestApp2 from './testIndex2';
-import TestApp from './TestApp';
-import './default_test_sizes';
+import TestApp from './testApp';
+import './defaultTestSizes';
 
 
 const router = createBrowserRouter([

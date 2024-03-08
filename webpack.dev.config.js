@@ -10,5 +10,5 @@ module.exports = merge(commonConfig, {
         port: 3000,
         historyApiFallback: true,
     },
-    entry: './test/integration/playwright/test_index.tsx',
+    entry: './test/integration/playwright/testIndex.tsx',
 });
