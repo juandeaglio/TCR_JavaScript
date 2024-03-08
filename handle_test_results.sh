@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run the test command
-OUTPUT=$(npm run test-with-server)
+OUTPUT=$(npm run test-ct)
 
 # Capture the exit code
 EXIT_CODE=$?
@@ -10,7 +10,7 @@ EXIT_CODE=$?
 echo "$OUTPUT"
 
 # Check for "tests passed" string in the output
-if echo "$OUTPUT" | grep -iq "\d+\sfailed"; then
+if echo "$OUTPUT" | grep -iq "\d+\sfail"; then
     echo "Exiting with code $EXIT_CODE"
     exit $EXIT_CODE
 else
