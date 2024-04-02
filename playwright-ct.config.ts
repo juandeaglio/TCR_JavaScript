@@ -30,14 +30,18 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // {
+    //   // consider why chromium is causing problems, perhaps a workaround for compatability or a newer browser version?
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
     {
-      // consider why chromium is causing problems, perhaps a workaround for compatability or a newer browser version?
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 });

@@ -22,10 +22,12 @@ const TestApp = () => {
          animation.pause();
     }, [])
     function handleUnpauseClick(){
+        unpause(elRef.current as Element);
         animation.play();
     };
     
     function handlePauseClick(){
+        pause(elRef.current as Element);
         animation.pause();
     };
 
