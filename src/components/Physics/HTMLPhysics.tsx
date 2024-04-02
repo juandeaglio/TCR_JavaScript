@@ -2,6 +2,7 @@ import React from 'react';
 import Vector from './Vector';
 import Components from './Components';
 import Pair from '../../Pair';
+import { transform } from '@babel/core';
 
 
 class HTMLPhysics {
@@ -32,12 +33,16 @@ class HTMLPhysics {
         let relative_components = absolute_components;
         relative_components.x += initial.x
         relative_components.y += initial.y
-        const style: Array<Keyframe> = [
+        const initial_translate = `translate(${initial.x}px, ${initial.y}px)`;
+        const final_translate = `translate(${relative_components.x}px, ${relative_components.y}px)`;
+        const style: Array<Keyframe> = [ // Could be handy to re-factor this 'style' const from Array into some object which flags the types of keyframes instead of simply having raw values.
             {
-                transform: `translate(${initial.x}px, ${initial.y}px)`,
+                transform: initial_translate,
+                '-webkit-transform': initial_translate,
             },
             {
-                transform: `translate(${relative_components.x}px, ${relative_components.y}px)`,
+                transform: final_translate,
+                '-webkit-transform': final_translate,
             }
         ];
         return style;
