@@ -39,7 +39,7 @@ const TestApp = () => {
             <button role="button" id="pause" onClick={handlePauseClick}>Pause</button>
         </div>
         <svg width={MAX_WIDTH} height={MAX_HEIGHT}>
-            <BoxWithPhysics id="Box-1" data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right} physics={physics} x={0} y={0} ref={elRef}> </BoxWithPhysics>
+            <BoxWithPhysics id="Box-1" data-testid='Box-1' windowHeight={MAX_HEIGHT} windowWidth={MAX_WIDTH} direction={Direction.Right}> </BoxWithPhysics>
         </svg>
     </div>)
 }
