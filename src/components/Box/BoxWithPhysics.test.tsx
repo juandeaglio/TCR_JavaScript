@@ -5,7 +5,7 @@ import '@testing-library/jest-dom'
 
 
   
-describe('Entity controls tests', () => {
+describe('BoxWithPhysics tests', () => {
     beforeEach(() => {
     })
 
