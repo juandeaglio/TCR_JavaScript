@@ -47,6 +47,7 @@ class HTMLPhysics {
         ];
         return style;
     }
+    
 
     createFriction(speed?: number, distance?: number, time?: number): Object {
         const animation_time = time || (distance/speed);
