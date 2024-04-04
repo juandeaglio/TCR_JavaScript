@@ -6,93 +6,71 @@ const MAX_WIDTH: number = TEST_WINDOW_WIDTH;
 const MAX_HEIGHT: number = TEST_WINDOW_HEIGHT;
 
 const TestAppPOC = () => {
-    const [style, modifyStyle] = useState<Object>();
-    const [keyFrames, setKeyFrames] = useState<string>('');
-    const [animationType, setAnimationName] = useState<string>();
-    const moveables: HTMLCollectionOf<SVGSVGElement> = document.getElementsByTagName('svg');
-    const [styleSelectors, setStyleSelectors] = useState<{ [key: string]: number }>({});
+    const [animationStyle, setAnimationStyle] = useState({});
+    const [keyframes, setKeyframes] = useState<string>('');
+    const [animationType, setAnimationType] = useState('');
+    const [moveables, setMoveables] = useState<Array<SVGSVGElement>>([]);
 
+    useEffect(() => {
+        const moveablesCollection = document.getElementsByTagName('svg');
+        setMoveables(Array.from(moveablesCollection));
+    }, []);
 
-    function handleUnpauseClick(){
-        modifyStyle({
-            animationName: "Moving",
-            animationTimingFunction: "linear",
-            animationDuration: "1s",
-            animationDelay: "0.0s",
-            animationIterationCount: 1,
-            animationDirection: "normal",
-            animationFillMode: "forwards",
-            animationPlayState: "paused",
+    const handleUnpauseClick = () => {
+        setAnimationStyle({
+          animationName: animationType,
+          animationTimingFunction: 'linear',
+          animationDuration: '1s',
+          animationDelay: '0s',
+          animationIterationCount: 1,
+          animationDirection: 'normal',
+          animationFillMode: 'forwards',
+          animationPlayState: 'running',
         });
     };
     
-    function handlePauseClick(){
-        modifyStyle({
-            animationName: "Moving",
-            animationTimingFunction: "linear",
-            animationDuration: "1s",
-            animationDelay: "0.0s",
-            animationIterationCount: 1,
-            animationDirection: "normal",
-            animationFillMode: "forwards",
-            animationPlayState: "running",
+      const handlePauseClick = () => {
+        setAnimationStyle({
+          ...animationStyle,
+          animationPlayState: 'paused',
         });
     };
 
-    useEffect(() => {
-        const newStyleSelectors: Record<string, number> = {};
-        Array.from(moveables).forEach((element, i) => {
-            var style: HTMLStyleElement = document.createElement("style");
-            style.id = element.id + '-animation';
-            newStyleSelectors[element.id] = 0;
-            style.innerHTML = keyFrames;
-            document.head.appendChild(style);
-        });
-        setStyleSelectors(newStyleSelectors);
-        setAnimationName("Moving");
-    }, []);
-    function handleGoClick(){
-        if (animationType) {
-            Array.from(moveables).forEach((element, i) => {
-                const elementCoords = element.getBoundingClientRect();
-                const x_initial = elementCoords.x;
-                const y_initial = elementCoords.y;
-                const keyframes = [
-                    `@-webkit-keyframes ${animationType} {
-                        0% {-webkit-transform:translate(${x_initial}px, ${y_initial}px)}
-                        100% {-webkit-transform:translate(${x_initial + 300}px, ${y_initial}px)}
-                    }`,
-                    `@keyframes ${animationType} {
-                        0% {transform:translate(${x_initial}px, ${y_initial}px)}
-                        100% {transform:translate(${x_initial + 300}px, ${y_initial}px)}
-                    }`];
-                const style: HTMLElement | null = document.getElementById(element.id+'-animation')
-                if (style){
-                    style.innerHTML = keyframes[0] + keyframes[1]
+
+    const handleGoClick = () => {
+        const newKeyframes = moveables.map((element, i) => {
+          const elementCoords = element.getBoundingClientRect();
+          const x_initial = elementCoords.x;
+          const y_initial = elementCoords.y;
+          return `
+                @keyframes move-${i} {
+                    0% { transform: translate(${x_initial}px, ${y_initial}px); }
+                    100% { transform: translate(${x_initial + 300}px, ${y_initial}px); }
                 }
-            });
-        }
-        modifyStyle({
-            animationName: "Moving",
-            animationTimingFunction: "linear",
-            animationDuration: "1s",
-            animationDelay: "0.0s",
-            animationIterationCount: 1,
-            animationDirection: "normal",
-            animationFillMode: "forwards",
-            animationPlayState: "running",
+                @-webkit-keyframes move-${i} {
+                    0% {-webkit-transform:translate(${x_initial}px, ${y_initial}px)}
+                    100% {-webkit-transform:translate(${x_initial + 300}px, ${y_initial}px)}
+                }`;
+        });
+        setKeyframes(newKeyframes.join(''));
+        
+        setAnimationStyle({
+          ...animationStyle,
+          animationPlayState: 'running',
         });
     };
+    
 
 
     return(
     <div>
+        <style>{keyframes}</style>
         <div style={{position: 'fixed'}}>
             <button role="button" id="unpause"onClick={handleUnpauseClick}>Unpause</button>
             <button role="button" id="pause" onClick={handlePauseClick}>Pause</button>
             <button role="button" id="go" onClick={handleGoClick}>Go</button>
         </div>
-        <svg id="Box-1" width={100} height={100} className='moveable' style={style}>
+        <svg id="Box-1" width={100} height={100} className='moveable' style={{...animationStyle, animationName: `move-${0}`,}}>
             <rect width={100} height={100} fill='red'></rect>
         </svg>
     </div>)
