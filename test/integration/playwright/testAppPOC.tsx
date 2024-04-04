@@ -7,50 +7,80 @@ const MAX_HEIGHT: number = TEST_WINDOW_HEIGHT;
 
 const TestAppPOC = () => {
     const [style, modifyStyle] = useState<Object>();
+    const [keyFrames, setKeyFrames] = useState<string>('');
     const [animationType, setAnimationName] = useState<string>();
     const moveables: HTMLCollectionOf<SVGSVGElement> = document.getElementsByTagName('svg');
-    const styles = {};
+    const [styleSelectors, setStyleSelectors] = useState<{ [key: string]: number }>({});
 
 
     function handleUnpauseClick(){
-        unpause(document.getElementsByClassName('moveable'));
-    };
-    
-    function handlePauseClick(){
-        pause(document.getElementsByClassName('moveable'));
-    };
-
-    useEffect(() => {
-        if (animationType) {
-            Array.from(moveables).forEach((element, i) => {
-            
-                const style: HTMLStyleElement = document.createElement("style");
-                const elementCoords = element.getBoundingClientRect();
-                const x_initial = elementCoords.x;
-                const y_initial = elementCoords.y;
-                const keyframes = 
-                `@-webkit-keyframes ${animationType} {
-                    0% {-webkit-transform:translate(${x_initial}px, ${y_initial}px)}
-                    100% {-webkit-transform:translate(${x_initial + 300}px, ${y_initial}px)}
-                }`;
-                style.sheet?.insertRule(keyframes, 0);
-                style.id = element.id;
-                style.textContent = keyframes;
-                styles[element.id] = document.head.appendChild(style);
-            });
-        }
-    }, [animationType]);
-    function handleGoClick(){
-        setAnimationName("Moving");
-
         modifyStyle({
             animationName: "Moving",
-            animationTimingFunction: "ease-in-out",
+            animationTimingFunction: "linear",
             animationDuration: "1s",
             animationDelay: "0.0s",
             animationIterationCount: 1,
             animationDirection: "normal",
-            animationFillMode: "forwards"
+            animationFillMode: "forwards",
+            animationPlayState: "paused",
+        });
+    };
+    
+    function handlePauseClick(){
+        modifyStyle({
+            animationName: "Moving",
+            animationTimingFunction: "linear",
+            animationDuration: "1s",
+            animationDelay: "0.0s",
+            animationIterationCount: 1,
+            animationDirection: "normal",
+            animationFillMode: "forwards",
+            animationPlayState: "running",
+        });
+    };
+
+    useEffect(() => {
+        const newStyleSelectors: Record<string, number> = {};
+        Array.from(moveables).forEach((element, i) => {
+            var style: HTMLStyleElement = document.createElement("style");
+            style.id = element.id + '-animation';
+            newStyleSelectors[element.id] = 0;
+            style.innerHTML = keyFrames;
+            document.head.appendChild(style);
+        });
+        setStyleSelectors(newStyleSelectors);
+        setAnimationName("Moving");
+    }, []);
+    function handleGoClick(){
+        if (animationType) {
+            Array.from(moveables).forEach((element, i) => {
+                const elementCoords = element.getBoundingClientRect();
+                const x_initial = elementCoords.x;
+                const y_initial = elementCoords.y;
+                const keyframes = [
+                    `@-webkit-keyframes ${animationType} {
+                        0% {-webkit-transform:translate(${x_initial}px, ${y_initial}px)}
+                        100% {-webkit-transform:translate(${x_initial + 300}px, ${y_initial}px)}
+                    }`,
+                    `@keyframes ${animationType} {
+                        0% {transform:translate(${x_initial}px, ${y_initial}px)}
+                        100% {transform:translate(${x_initial + 300}px, ${y_initial}px)}
+                    }`];
+                const style: HTMLElement | null = document.getElementById(element.id+'-animation')
+                if (style){
+                    style.innerHTML = keyframes[0] + keyframes[1]
+                }
+            });
+        }
+        modifyStyle({
+            animationName: "Moving",
+            animationTimingFunction: "linear",
+            animationDuration: "1s",
+            animationDelay: "0.0s",
+            animationIterationCount: 1,
+            animationDirection: "normal",
+            animationFillMode: "forwards",
+            animationPlayState: "running",
         });
     };
 
