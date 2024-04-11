@@ -20,11 +20,41 @@ Playwright scripts:
 **test-playwright**: This waits for localhost:3000 to be accessible (if fails to start check for existing bindings on port 3000, i.e. some app is using your port 3000), it also executes playwright tests.
 
 **test-with-server**: Concurrently executes the start-server and test-playwright (blocks until port 3000 is accessible) scripts.
+
+**test-ct**: This test specifically with the experimental React component testing library.
 ***
 **A code example**:
 
 Let's imagine that in the simplest case we just need an html + tsx file. To use the HTMLPhysics API currently it only works with one pre-defined component that is decorated with BoxWithPhysics, we just inject the physics we want to use and a direction to start with, I also plan on adding a magintude parameter as the speed for which the element moves in is currently constant (10). I intend on generalizing it to any functional component or even just query selected HTML elements.
+This is now out-of-date. I will simplify the structure down to something much much more idiomatic to React.
+```
+const TestApp = () => {
+  const [numElements, setNumElements] = useState<number>(2);
+  const [elements, setElements] = useState<Element[]>([]);
 
+  useEffect(() => {
+    setNumElements(1);
+  }, []);
+
+  return (
+    <div>
+      <ElementEditor
+        numElements={numElements}
+        elements={elements}
+        setElements={setElements}
+        // Omit the onCollision prop if you don't need it
+      />
+    </div>
+  );
+};
+
+test("Create an environment with a Box", async ({ mount, page }) => {
+  const component = await mount(<TestApp />);
+  await expect(component).toHaveClass('box');
+});
+```
+
+<strike>
 index.html
 ```
 <!DOCTYPE html>
@@ -53,17 +83,17 @@ const TestApp = () => (
 
 ReactDOM.render(<TestApp />, document.getElementById('root'));
 ```
-
+< /strike>
 ***
 **Current plans**:
 Mirroring this on a private GitLab repo where a pipeline for building/testing/containerizing exists. This is duplicate to the GitLab because I like having the metrics of my commits all on my GitHub (haven't looked into a way which integrates metrics between the two).
 [GitLab Repository](https://gitlab.com/learningtcr/TCR_TypeScript/-/pipelines)
 
-Slowly building up the code for this as of 1/10/2024.
+Slowly building up the code for this as of 4/11/2024.
 
-I'm going to re-name this project to HTML Physics. It's physics with HTML and CSS!
+I'm going to re-name this project probably once I flesh out all the responsibilities in code.
 
-I'm trying to build up a system that tracks collisions between HTML elements. I want things to bounce off each other in a pretty, abstract manner.
+I'm trying to build up a system that tracks collisions between HTML elements. I want things to bounce off each other in a pretty, abstract, but realistically behaving manner.
 
 Eventually, it's going to replace the splash screen on [my portfolio](https://juandeaglio.github.io).
 
